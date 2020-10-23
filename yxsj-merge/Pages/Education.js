@@ -12,10 +12,19 @@ import {
     Dimensions, Linking
 } from "react-native";
 
-import Category from '../Category'
+import AnimatedSplash from "react-native-animated-splash-screen";
+
+import Category from '../components/Category'
 const { height, width } = Dimensions.get('window')
 
 class Education extends Component {
+
+    // componentWillMount() {
+    //     this.startHeaderHeight = 80
+    //     if (Platform.OS == 'android') {
+    //         this.startHeaderHeight = 100 + StatusBar.currentHeight
+    //     }
+    // }
 
     render() {
         return (
@@ -35,7 +44,7 @@ class Education extends Component {
                                 Linking.openURL('https://www.straitstimes.com/tags/recycling');
                             }}
                             style={{ fontSize: 24, fontWeight: '700', paddingHorizontal: 20 }}>
-                                News
+                                News / Recycling Tips
                             </Text>
 
                             <View style={{ height: 200, marginTop: 20 }}>
@@ -54,14 +63,22 @@ class Education extends Component {
                                     <Category imageUri={require('../assets/upcycle.jpg')}
                                         name="Upcycling"
                                     />
-                                    <Category imageUri={require('../assets/reduceplastic.png')}
+                                    <Category imageUri={require('../assets/timer.png')}
+                                        name="Spend some time to sort recycling"
+                                    />
+                                    <Category imageUri={require('../assets/noplastic.png')}
                                         name="Reduce Plastic Waste"
+                                    />
+                                    <Category imageUri={require('../assets/recycle-bin.png')}
+                                        name="Ensure items are clean"
                                     />
                                     <Category imageUri={require('../assets/dyk.jpg')}
                                         name="Did you know?"
                                     />
                                 </ScrollView>
+                                
                             </View>
+                            
                             <View style={{ marginTop: 20, paddingHorizontal: 20 }}>
                                 <Text style={{ fontSize: 24, fontWeight: '700' }}> 
                                     Plastic
@@ -78,6 +95,7 @@ class Education extends Component {
                                     onPress={() => this.props.navigation.navigate("Plastic")}
                                 />  
                             </View>
+                            
 
                             <View style={{ marginTop: 40, paddingHorizontal: 20 }}>
                                 <Text style={{ fontSize: 24, fontWeight: '700' }}>
@@ -173,3 +191,10 @@ class Education extends Component {
 }
 export default Education;
 
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center'
+    }
+});

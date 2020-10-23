@@ -20,8 +20,6 @@ const MIN_HEIGHT = Platform.OS === 'ios' ? 90 : 55;
 const MAX_HEIGHT = 350;
 
 const Nonrecyclables = ({route}) => {
-//   const itemData = route.params.itemData;
-//   const navTitleView = useRef(null);
 
   return (
     <View style={styles.container}>
@@ -33,14 +31,18 @@ const Nonrecyclables = ({route}) => {
         minOverlayOpacity={0.3}
         
         renderHeader={() => (
-          <Image 
-          source={require('../assets/no.png')} />
+          <Image
+          style={{ flex: 1, height: null, width: null, resizeMode: 'contain', borderRadius: 5, borderWidth: 1, borderColor: '#dddddd' }}
+          source={require('../assets/no.png')}
+      />
+          // <Image 
+          // source={require('../assets/no.png')} />
         )}
         
         >
           <View style={{flexDirection: 'column', justifyContent: 'space-between'}}>
-            <Text style={styles.sectionTitle}>Non-Recyclables Items: Plastic Water Bottle, Plastic Cups, Plastic Bags</Text>
-            <Text style={styles.sectionContent}>Plastic Items: Plastic Water Bottle, Plastic Cups, Plastic Bags</Text>
+            <Text style={styles.sectionTitle}>Non-Recyclables Items: Items with Food or Liquid Waste (eg. banana, pizza boxes), Styrofoam, Ceramics, Polystyrene</Text>
+            <Text style={styles.sectionContent}>Recycling contaminated items may contaminate the recyclables present and make them not recyclables. 😭</Text>
             
           </View>
 
@@ -55,6 +57,27 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
+  image: {
+    height: MAX_HEIGHT,
+    width: Dimensions.get('window').width,
+    alignSelf: 'stretch',
+    resizeMode: 'cover',
+  },
+  title: {
+    fontSize: 20,
+  },
+  body: {
+    fontSize: 14,
+  },
+  name: {
+    fontWeight: 'bold',
+  },
+  section: {
+    padding: 20,
+    borderBottomWidth: 1,
+    borderBottomColor: '#cccccc',
+    backgroundColor: 'white',
+  },
   sectionTitle: {
     fontSize: 18,
     fontWeight: 'bold',
@@ -64,5 +87,12 @@ const styles = StyleSheet.create({
     fontSize: 16,
     textAlign: 'justify',
     padding: 10
-  }
+  },
+  titleContainer: {
+    flex: 1,
+    alignSelf: 'stretch',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  
 });

@@ -33,27 +33,67 @@ const Metal = ({route}) => {
         minOverlayOpacity={0.3}
         
         renderHeader={() => (
-          <Image 
-          source={require('../assets/metal.jpg')} />
-        )}
-        
-        >
-          <View style={{flexDirection: 'column', justifyContent: 'space-between'}}>
-            <Text style={styles.sectionTitle}>Metal Items:  Water Bottle, Plastic Cups, Plastic Bags</Text>
-            <Text style={styles.sectionContent}>Plastic Items: Plastic Water Bottle, Plastic Cups, Plastic Bags</Text>
-            
-          </View>
+          <Image
+          style={{ flex: 1, height: null, width: null, resizeMode: 'contain', borderRadius: 5, borderWidth: 1, borderColor: '#dddddd' }}
+          source={require('../assets/metal.jpeg')}
+      />
+    )}
+    
+    >
+      <View style={{flexDirection: 'column', justifyContent: 'space-between'}}>
+        <Text style={styles.sectionTitle}>Metal Items:  Drink Cans, Aluminium Cans, Biscuit Tins etc</Text>
+        <Text style={styles.sectionContent}>Recycling is more economic - less energy is needed to produce metal</Text>
+        <Text style={styles.sectionContent}>Saves valuable raw materials - reserves of metal ores will last longer and there will be less damage to the environment. s</Text>
+        <Text style={styles.sectionContent}>Do your part and deposit these items in the nearest recycling bin! </Text>
+      </View>
 
       </HeaderImageScrollView>
     </View>
   );
 };
+          
+//           <Image 
+//           source={require('../assets/metal.jpg')} />
+//         )}
+        
+//         >
+//           <View style={{flexDirection: 'column', justifyContent: 'space-between'}}>
+//             <Text style={styles.sectionTitle}>Metal Items:  Drink Cans, Biscuit Tins etc.</Text>
+//             <Text style={styles.sectionContent}>Did you know?</Text>
+            
+//           </View>
+
+//       </HeaderImageScrollView>
+//     </View>
+//   );
+// };
 
 export default Metal;
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  image: {
+    height: MAX_HEIGHT,
+    width: Dimensions.get('window').width,
+    alignSelf: 'stretch',
+    resizeMode: 'cover',
+  },
+  title: {
+    fontSize: 20,
+  },
+  body: {
+    fontSize: 14,
+  },
+  name: {
+    fontWeight: 'bold',
+  },
+  section: {
+    padding: 20,
+    borderBottomWidth: 1,
+    borderBottomColor: '#cccccc',
+    backgroundColor: 'white',
   },
   sectionTitle: {
     fontSize: 18,
@@ -64,6 +104,12 @@ const styles = StyleSheet.create({
     fontSize: 16,
     textAlign: 'justify',
     padding: 10
-  }
+  },
+  titleContainer: {
+    flex: 1,
+    alignSelf: 'stretch',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   
 });

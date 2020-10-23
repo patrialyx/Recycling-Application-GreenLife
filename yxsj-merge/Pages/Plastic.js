@@ -33,15 +33,18 @@ const Plastic = ({route}) => {
         minOverlayOpacity={0.3}
         
         renderHeader={() => (
-          <Image 
-          source={require('../assets/plastic.jpeg')} />
+          <Image
+              style={{ flex: 1, height: null, width: null, resizeMode: 'contain', borderRadius: 5, borderWidth: 1, borderColor: '#dddddd' }}
+              source={require('../assets/plastic.jpeg')}
+          />
         )}
         
         >
           <View style={{flexDirection: 'column', justifyContent: 'space-between'}}>
-            <Text style={styles.sectionTitle}>Plastic Items: Plastic Water Bottle, Plastic Cups, Plastic Bags</Text>
-            <Text style={styles.sectionContent}>Plastic Items: Plastic Water Bottle, Plastic Cups, Plastic Bags</Text>
-            
+            <Text style={styles.sectionTitle}>Plastic Items: Plastic Packaging, Plastic Boxes, Plastic Bags, Detergent/Shampoo Bottles (rinsed), Juice/ Milk Containers, CD casings, Toiletries containers etc</Text>
+            <Text style={styles.sectionContent}>People buy a million plastic bottles per minute and 91% of them end up in the garbage.  </Text>
+            <Text style={styles.sectionContent}>Recycling takes 88% less energy than making plastic from raw materials while helping reducing fossil fuel consumption </Text>
+            <Text style={styles.sectionContent}>Do your part and deposit these items in the nearest recycling bin! </Text>
           </View>
 
       </HeaderImageScrollView>
@@ -55,6 +58,34 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
+  image: {
+    flex: 1,
+    height: null, 
+    width: null, 
+    resizeMode: 'contain', 
+    borderRadius: 5, 
+    borderWidth: 1, 
+    borderColor: '#dddddd'
+    // height: MAX_HEIGHT,
+    // width: Dimensions.get('window').width,
+    // alignSelf: 'stretch',
+    // resizeMode: 'cover',
+  },
+  title: {
+    fontSize: 20,
+  },
+  body: {
+    fontSize: 14,
+  },
+  name: {
+    fontWeight: 'bold',
+  },
+  section: {
+    padding: 20,
+    borderBottomWidth: 1,
+    borderBottomColor: '#cccccc',
+    backgroundColor: 'white',
+  },
   sectionTitle: {
     fontSize: 18,
     fontWeight: 'bold',
@@ -63,7 +94,13 @@ const styles = StyleSheet.create({
   sectionContent: {
     fontSize: 16,
     textAlign: 'justify',
-    padding: 10
-  }
+    padding: 12
+  },
+  titleContainer: {
+    flex: 1,
+    alignSelf: 'stretch',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   
 });
