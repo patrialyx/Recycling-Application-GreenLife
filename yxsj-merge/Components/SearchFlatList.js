@@ -11,7 +11,7 @@ import {
 } from "react-native";
 import filter from "lodash.filter";
 import _ from "lodash";
-import Fire from "../Fire";
+import Fire from "../Backend/Fire";
 
 import { useNavigation } from "@react-navigation/native";
 import { IconButton } from "react-native-paper";

@@ -1,11 +1,8 @@
 import { StatusBar} from 'expo-status-bar';
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, Button, Image, TouchableOpacity} from 'react-native';
-import Donut from '../ProgressBar/progress_chart.js'
-import Fire from '../Backend/Fire.js'
-import Search from 'Search.js'
-
-
+import Donut from '../ProgressBar/progress_chart.js';
+import Fire from '../Backend/Fire.js';
 
 export default function Home(props) {
   
@@ -42,9 +39,7 @@ export default function Home(props) {
           </View>
       </TouchableOpacity>
       {/* search container */}
-      <TouchableOpacity style = {styles.search} 
-        onPress={() => this.props.navigation.navigate("Search")
-        }>
+      <TouchableOpacity style = {styles.search} onPress={()=> props.navigation.navigate('Search')}>
         <Image 
           source={require('../assets/loupe.png')} 
           style={{ width: 50, height: 50, resizeMode: 'contain',flex: 1}}
@@ -52,7 +47,7 @@ export default function Home(props) {
         <Text style={{fontSize:30,flex:2,fontWeight: 'bold'}}>Search</Text> 
       </TouchableOpacity>
       {/* progress container */}
-      <TouchableOpacity style = {styles.progress} onPress={()=> props.navigation.navigate('Points',{total_points})}>
+      <TouchableOpacity style = {styles.progress} onPress={()=> this.props.navigation.navigate('Points',{total_points})}>
         <Text style={{fontSize:30,fontWeight: 'bold',paddingTop:10}}>My Progress</Text> 
         <Text style={{fontSize:20}}>Level {level}</Text> 
         

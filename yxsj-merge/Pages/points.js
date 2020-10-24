@@ -4,10 +4,8 @@ import { StyleSheet, Text, View, Button, Image, TouchableOpacity } from 'react-n
 import ProgressBar from '../ProgressBar/progress_bar.js';
 import Fire from '../Backend/Fire.js'
 
-
-
 export default function Points(props) {
-  const [hist, setHist] = useState();
+  const [hist, setHist] = useState(1);
   useEffect(() => {
     async function updateHist(){
       const hist = await Fire.shared.getPointHistory()

@@ -19,20 +19,19 @@ import Nonrecyclables from "../Pages/Nonrecyclables";
 import Ewaste from "../Pages/Ewaste";
 import Map from "../Pages/Map";
 import Home from "../Pages/Home";
-import Points from "../Pages/points";
-
+import Points from "../Pages/Points";
+import {SearchStackNavigator} from './SearchStackNavigator'
 
 const Stack = createStackNavigator();
 // lacking search cuz firebase stuff 
 
 const HomeScreenStackNavigator = () => {
   return (
-    
     <Stack.Navigator>
       <Stack.Screen name="Home" component= {Home} />
       <Stack.Screen name="Points" component= {Points} />
+      <Stack.Screen name="Search" component= {SearchStackNavigator} />
     </Stack.Navigator>
-
   );
 }
 

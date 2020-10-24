@@ -49,22 +49,6 @@ const Metal = ({route}) => {
     </View>
   );
 };
-          
-//           <Image 
-//           source={require('../assets/metal.jpg')} />
-//         )}
-        
-//         >
-//           <View style={{flexDirection: 'column', justifyContent: 'space-between'}}>
-//             <Text style={styles.sectionTitle}>Metal Items:  Drink Cans, Biscuit Tins etc.</Text>
-//             <Text style={styles.sectionContent}>Did you know?</Text>
-            
-//           </View>
-
-//       </HeaderImageScrollView>
-//     </View>
-//   );
-// };
 
 export default Metal;
 
