@@ -1,6 +1,7 @@
 const firebase = require('firebase')
 // const admin = require('firebase-admin')
 // const firestore = require('firebase-firestore')
+require ("firebase/firestore")
 
 class Fire {
   constructor() {
@@ -145,6 +146,18 @@ class Fire {
     }
   }
 
+  // temp
+  // postSearchResults = async () => {
+  //   const data = require('../data.json')
+  //   console.log("hi")
+  //   console.log(data, "test")
+  //   try {
+  //     const res = await this.db.doc('searchResults/recyclables').set({recyclables: data})
+  //   } catch (e) {
+  //     console.log(e.message)
+  //   }
+  // }
+
 
   // ============ brent ============
   getTotalPoints = () => {
@@ -205,16 +218,18 @@ class Fire {
   }
 
   // ============ xy ====================
-  getAllBins = async () => {
+  getAllBins = () => {
     console.log('in get bins')
-    try {
-      const snap = await this.db.collection('bins').get()
-      const merged = [].concat.apply([], snap.docs.map(obj => obj.data().data))
-      console.log('length of merged', merged.length)
-      return merged
-    } catch (e) {
-      console.log('error: ', e.message)
-    }
+    // try {
+      this.db.collection('bins').get().then((snap)=>{
+        const merged = [].concat.apply([], snap.docs.map(obj => obj.data().data))
+        console.log('length of merged', merged.length)
+        return merged
+
+      })
+    // } catch (e) {
+    //   console.log('error: ', e.message)
+    // }
   }
 
   

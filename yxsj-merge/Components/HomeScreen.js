@@ -7,19 +7,11 @@ class HomeScreen extends React.Component {
       <View style={styles.container}>
         <Button
           title="Search page"
-          onPress={() => this.props.navigation.navigate("Home")}
+          onPress={() => this.props.navigation.navigate("Search")}
         />
         <Button
           title="QR Code Scanner"
           onPress={() => this.props.navigation.navigate("QRScanner")}
-        />
-        <Button
-          title="Education Page"
-          onPress={() => this.props.navigation.navigate("Education")}
-        />
-        <Button
-          title="Settings Page"
-          onPress={() => this.props.navigation.navigate("Settings")}
         />
       </View>
     );
@@ -30,7 +22,8 @@ const styles = StyleSheet.create({
     flexBasis: 230,
     flexGrow: 2,
     alignItems: "center",
-    justifyContent: "space-between"
+    justifyContent: "space-between",
+    alignItems: "stretch",
   },
 });
 export default HomeScreen;

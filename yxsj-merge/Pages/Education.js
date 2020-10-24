@@ -4,17 +4,12 @@ import {
     Text,
     StyleSheet,
     SafeAreaView,
-    TextInput,
-    Platform,
-    StatusBar,
     ScrollView,
     Image, Button,
     Dimensions, Linking
 } from "react-native";
 
-import AnimatedSplash from "react-native-animated-splash-screen";
-
-import Category from '../components/Category'
+import Category from '../Category'
 const { height, width } = Dimensions.get('window')
 
 class Education extends Component {

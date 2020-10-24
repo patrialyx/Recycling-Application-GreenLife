@@ -8,9 +8,7 @@ import {
   StatusBar,
   Platform,
 } from 'react-native';
-import HeaderImageScrollView, {
-  TriggeringView,
-} from 'react-native-image-header-scroll-view';
+import HeaderImageScrollView from 'react-native-image-header-scroll-view';
 
 // import * as Animatable from 'react-native-animatable';
 // import MapView, {PROVIDER_GOOGLE} from 'react-native-maps';

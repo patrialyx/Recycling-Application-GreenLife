@@ -1,7 +1,5 @@
 import React from "react";
 import "react-native-gesture-handler";
-import { StyleSheet } from "react-native";
-import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
 import HomeScreen from "../Pages/HomeScreen";
@@ -19,25 +17,29 @@ import Metal from "../Pages/Metal";
 import Glass from "../Pages/Glass";
 import Nonrecyclables from "../Pages/Nonrecyclables";
 import Ewaste from "../Pages/Ewaste";
+import Map from "../Pages/Map";
+import Home from "../Pages/Home";
+import Points from "../Pages/points";
+
 
 const Stack = createStackNavigator();
 // lacking search cuz firebase stuff 
 
 const HomeScreenStackNavigator = () => {
   return (
+    
     <Stack.Navigator>
-      <Stack.Screen name="Home" component={HomeScreen} />
-      <Stack.Screen name= "QRScanner" component= {QRScanner} />
-      <Stack.Screen name= "Education" component={Education} />
-      <Stack.Screen name= "Settings" component={Settings} />
+      <Stack.Screen name="Home" component= {Home} />
+      <Stack.Screen name="Points" component= {Points} />
     </Stack.Navigator>
+
   );
 }
 
 const LocationStackNavigator = () => {
   return (
     <Stack.Navigator>
-      <Stack.Screen name= "Locations" component={Location} />
+      <Stack.Screen name= "Map" component={Map} />
     </Stack.Navigator>
   );
 }
