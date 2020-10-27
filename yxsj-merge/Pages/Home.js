@@ -6,7 +6,7 @@ import Fire from '../Backend/Fire.js'
 
 
 class Home extends Component {
- 
+
 
   constructor(props) {
     
@@ -21,30 +21,36 @@ class Home extends Component {
       isLoading: false,
       error: null
     }
-    const lol = this.state.total_points;
   }
 
-  async loadAsyncData() {
+  // async loadAsyncData() {
     
-    this.setState({isLoading: true, error: null});
+  //   this.setState({isLoading: true, error: null});
     
-    try {
-      console.log("This is running");
-      const resp = await Fire.shared.getTotalPoints();
-      const hist_resp = await Fire.shared.getPointHistory();
-      const percent = Math.floor((resp%1000)/10);
-      const level = Math.floor(resp/1000)+1;
-      const next_level = Math.floor(1000-(resp%1000));
-      this.setState({isLoading: false, total_points: resp,hist: hist_resp, percent: percent, level: level, next_level: next_level});
-    } catch(e) {
-      this.setState({isLoading: false, error: e});
-    }
-    
+  //   try {
+  //     console.log("This is running");
+  //     const resp = await Fire.shared.getTotalPoints();
+  //     const hist_resp = await Fire.shared.getPointHistory();
+  //     const percent = Math.floor((resp%1000)/10);
+  //     const level = Math.floor(resp/1000)+1;
+  //     const next_level = Math.floor(1000-(resp%1000));
+  //     this.setState({isLoading: false, total_points: resp,hist: hist_resp, percent: percent, level: level, next_level: next_level});
+  //   } catch(e) {
+  //     this.setState({isLoading: false, error: e});
+  //   }
+  // }
+
+  updateState = (total, hist) => {
+    const percent = Math.floor((total%1000)/10);
+    const level = Math.floor(total/1000)+1;
+    const next_level = Math.floor(1000-(total%1000));
+    this.setState({total_points: total, hist, percent, level, next_level});
   }
   
   componentDidMount() {
     
-    this.loadAsyncData();
+    // this.loadAsyncData();
+    Fire.shared.getRealtimePoints(this.updateState)
     
   }
   render(){
