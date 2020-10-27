@@ -8,8 +8,8 @@ import Settings_QR from "../Pages/Settings_QR";
 import Settings from "../Pages/Settings";
 import Settings_Keyin from "../Pages/Settings_Keyin";
 import Education from "../Pages/Education";
-import Deposit from "../Pages/Deposit";
-import DepositResults from "../Pages/DepositResults";
+import Deposit from "../Components/DepositRecyclables/Deposit";
+import DepositResults from "../Components/DepositRecyclables/DepositResults";
 import Plastic from "../Pages/Plastic";
 import Paper from "../Pages/Paper";
 import Metal from "../Pages/Metal";
@@ -60,8 +60,8 @@ const EducationStackNavigator = () => {
       <Stack.Screen name = "Metal" component={Metal} />
       <Stack.Screen name = "Paper" component={Paper} />
       <Stack.Screen name = "Glass" component={Glass} />
-      <Stack.Screen name = "Ewaste" component={Ewaste} />
-      <Stack.Screen name = "Nonrecyclables" component={Nonrecyclables} />
+      <Stack.Screen name = "E-waste" component={Ewaste} />
+      <Stack.Screen name = "Non-recyclables" component={Nonrecyclables} />
     </Stack.Navigator>
   );
 }

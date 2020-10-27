@@ -32,11 +32,17 @@ class SubcategoryInterface extends React.Component {
           </View>
           <View style={styles.buttonContainer}>
             {/* insert link to different categories */}
-            <TouchableOpacity style={styles.button}> 
+            <TouchableOpacity 
+              onPress={() => this.props.navigation.navigate(this.subcategory)} 
+              style={styles.button}
+              > 
               <Text>More Info</Text>
             </TouchableOpacity>
             {/* insert link to map */}
-            <TouchableOpacity style={styles.button}>
+            <TouchableOpacity 
+              onPress={() => this.props.navigation.navigate("Map")} 
+              style={styles.button}
+              > 
               <Text>Find A Bin</Text>
             </TouchableOpacity>
           </View>

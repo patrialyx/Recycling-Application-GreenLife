@@ -139,7 +139,7 @@ class Fire {
 
   getSearchResults = async () =>  {
     try {
-      const doc = this.db.doc('searchResults/recyclables').get()
+      const doc = await this.db.doc('searchResults/recyclables').get()
       return doc.data().recyclables
     } catch (e) {
       console.log('error', e.message)

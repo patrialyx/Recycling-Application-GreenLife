@@ -5,6 +5,15 @@ import { createStackNavigator } from "@react-navigation/stack";
 import SearchByText from "../Components/SearchByText"
 import SearchByPhoto from "../Components/SearchByPhoto"
 
+import Plastic from "../Pages/Plastic";
+import Paper from "../Pages/Paper";
+import Metal from "../Pages/Metal";
+import Glass from "../Pages/Glass";
+import Nonrecyclables from "../Pages/Nonrecyclables";
+import Ewaste from "../Pages/Ewaste";
+
+import Map from "../Pages/Map"
+
 import QRScanner from "../Pages/QRScanner"
 
 //Import Components that involve Camera
@@ -18,7 +27,14 @@ const SearchStackNavigator = () => {
             <Stack.Screen name="SearchByText" component={SearchByText} />
             <Stack.Screen name="SearchByPhoto" component={SearchByPhoto} />
             <Stack.Screen name="QRScanner" component={QRScanner} />
-            <Stack.Screen name="SubCategoryInterface" component={SubcategoryInterface}/>
+            <Stack.Screen name="SubcategoryInterface" component={SubcategoryInterface}/>
+            <Stack.Screen name = "Plastic" component={Plastic} />
+            <Stack.Screen name = "Metal" component={Metal} />
+            <Stack.Screen name = "Paper" component={Paper} />
+            <Stack.Screen name = "Glass" component={Glass} />
+            <Stack.Screen name = "E-waste" component={Ewaste} />
+            <Stack.Screen name = "Non-recyclables" component={Nonrecyclables} />
+            <Stack.Screen name= "Map" component={Map} />
         </Stack.Navigator>
     )
 }
