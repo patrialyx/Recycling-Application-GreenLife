@@ -149,9 +149,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
+    margin: 0,
+    padding: 36,
     justifyContent: 'center',
-    // fullWidth: 'true'
   },
   input: {
     height: 45,
