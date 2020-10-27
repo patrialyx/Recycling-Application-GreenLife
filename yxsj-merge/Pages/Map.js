@@ -78,8 +78,8 @@ export default class Map extends React.Component {
         let region = {
                 latitude: parseFloat(position.coords.latitude),
                 longitude: parseFloat(position.coords.longitude),
-                latitudeDelta: 0.09,
-                longitudeDelta: 0.09
+                latitudeDelta: 0.003,
+                longitudeDelta: 0.003
             };
             this.setState({
                 initialRegion: region
