@@ -10,12 +10,14 @@ import Settings_Keyin from "../Pages/Settings_Keyin";
 import Education from "../Pages/Education";
 import Deposit from "../Pages/Deposit";
 import DepositResults from "../Pages/DepositResults";
-import Plastic from "../Pages/Plastic";
-import Paper from "../Pages/Paper";
-import Metal from "../Pages/Metal";
-import Glass from "../Pages/Glass";
-import Nonrecyclables from "../Pages/Nonrecyclables";
-import Ewaste from "../Pages/Ewaste";
+// import Plastic from "../Pages/Plastic";
+// import Paper from "../Pages/Paper";
+// import Metal from "../Pages/Metal";
+// import Glass from "../Pages/Glass";
+// import Nonrecyclables from "../Pages/Nonrecyclables";
+// import Ewaste from "../Pages/Ewaste";
+import SubcategoryDetails from "../Pages/SubcategoryDetails";
+
 import Map from "../Pages/Map";
 import Home from "../Pages/Home";
 import Points from "../Pages/Points";
@@ -56,12 +58,13 @@ const EducationStackNavigator = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen name = "Education" component={Education} />
-      <Stack.Screen name = "Plastic" component={Plastic} />
+      <Stack.Screen name = "Subcategory" component={SubcategoryDetails} />
+      {/* <Stack.Screen name = "Plastic" component={Plastic} />
       <Stack.Screen name = "Metal" component={Metal} />
       <Stack.Screen name = "Paper" component={Paper} />
       <Stack.Screen name = "Glass" component={Glass} />
       <Stack.Screen name = "Ewaste" component={Ewaste} />
-      <Stack.Screen name = "Nonrecyclables" component={Nonrecyclables} />
+      <Stack.Screen name = "Nonrecyclables" component={Nonrecyclables} /> */}
     </Stack.Navigator>
   );
 }

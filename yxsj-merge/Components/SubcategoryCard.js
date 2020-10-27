@@ -93,7 +93,7 @@ class SubcategoryCard extends Component {
 
           <Button  
             title="More Info"  
-            onPress={() => this.props.navigation.navigate("Plastic")}
+            onPress={() => this.props.navigation.navigate("Subcategory", {type: this.props.type})}
           />  
         </View>
     );

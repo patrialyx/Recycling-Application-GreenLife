@@ -75,12 +75,13 @@ class Education extends Component {
                                 
                             </View>
                             
-                            <SubcategoryCard type="plastic"/>
-                            <SubcategoryCard type="paper"/>
-                            <SubcategoryCard type="glass"/>
-                            <SubcategoryCard type="ewaste"/>
-                            <SubcategoryCard type="metal"/>
-                            <SubcategoryCard type="no"/>
+                            <SubcategoryCard type="plastic" navigation={this.props.navigation}/>
+                            <SubcategoryCard type="paper" navigation={this.props.navigation}/>
+                            <SubcategoryCard type="glass" navigation={this.props.navigation}/>
+                            <SubcategoryCard type="ewaste" navigation={this.props.navigation}/>
+                            <SubcategoryCard type="metal" navigation={this.props.navigation}/>
+                            <SubcategoryCard type="no" navigation={this.props.navigation}/>
+
 
                             <View style={{ marginTop: 40, paddingHorizontal: 20 }}>
                                 <Text style={{ fontSize: 24, fontWeight: '700' }}>
