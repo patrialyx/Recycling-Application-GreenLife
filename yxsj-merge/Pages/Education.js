@@ -10,6 +10,7 @@ import {
 } from "react-native";
 
 import Category from '../Category'
+import SubcategoryCard from '../Components/SubcategoryCard'
 const { height, width } = Dimensions.get('window')
 
 class Education extends Component {
@@ -74,104 +75,12 @@ class Education extends Component {
                                 
                             </View>
                             
-                            <View style={{ marginTop: 20, paddingHorizontal: 20 }}>
-                                <Text style={{ fontSize: 24, fontWeight: '700' }}> 
-                                    Plastic
-                                </Text>
-                                
-                                <View style={{ width: width - 40, height: 200, marginTop: 20 }}>
-                                    <Image
-                                        style={{ flex: 1, height: null, width: null, resizeMode: 'contain', borderRadius: 5, borderWidth: 1, borderColor: '#dddddd' }}
-                                        source={require('../assets/plastic.png')}
-                                    />
-                                </View>
-                                <Button  
-                                    title="More Info"  
-                                    onPress={() => this.props.navigation.navigate("Plastic")}
-                                />  
-                            </View>
-                            
-
-                            <View style={{ marginTop: 40, paddingHorizontal: 20 }}>
-                                <Text style={{ fontSize: 24, fontWeight: '700' }}>
-                                    Paper
-                                </Text>
-                                <View style={{ width: width - 40, height: 200, marginTop: 20 }}>
-                                    <Image
-                                        style={{ flex: 1, height: null, width: null, resizeMode: 'contain', borderRadius: 5, borderWidth: 1, borderColor: '#dddddd' }}
-                                        source={require('../assets/paper.png')}
-                                    />
-                                </View>
-                                <Button  
-                                    title="More Info"  
-                                    onPress={() => this.props.navigation.navigate("Paper")}
-                                />  
-                            </View>
-
-                            <View style={{ marginTop: 40, paddingHorizontal: 20 }}>
-                                <Text style={{ fontSize: 24, fontWeight: '700' }}>
-                                    Glass
-                                </Text>
-                                <View style={{ width: width - 40, height: 200, marginTop: 20 }}>
-                                    <Image
-                                        style={{ flex: 1, height: null, width: null, resizeMode: 'contain', borderRadius: 5, borderWidth: 1, borderColor: '#dddddd' }}
-                                        source={require('../assets/glass.png')}
-        
-                                    />
-                                </View>
-                                <Button  
-                                    title="More Info"  
-                                    onPress={() => this.props.navigation.navigate("Glass")}
-                                />  
-                            </View>
-
-                            <View style={{ marginTop: 40, paddingHorizontal: 20 }}>
-                                <Text style={{ fontSize: 24, fontWeight: '700' }}>
-                                    E-Waste
-                                </Text>
-                                <View style={{ width: width - 40, height: 200, marginTop: 20 }}>
-                                    <Image
-                                        style={{ flex: 1, height: null, width: null, resizeMode: 'contain', borderRadius: 5, borderWidth: 1, borderColor: '#dddddd' }}
-                                        source={require('../assets/ewaste.png')}
-                                    />
-                                </View>
-                                <Button  
-                                    title="More Info"  
-                                    onPress={() => this.props.navigation.navigate("Ewaste")}
-                                />  
-                            </View>
-
-                            <View style={{ marginTop: 40, paddingHorizontal: 20 }}>
-                                <Text style={{ fontSize: 24, fontWeight: '700' }}>
-                                    Metal
-                                </Text>
-                                <View style={{ width: width - 40, height: 200, marginTop: 20 }}>
-                                    <Image
-                                        style={{ flex: 1, height: null, width: null, resizeMode: 'contain', borderRadius: 5, borderWidth: 1, borderColor: '#dddddd' }}
-                                        source={require('../assets/metal.png')}
-                                    />
-                                </View>
-                                <Button  
-                                    title="More Info"  
-                                    onPress={() => this.props.navigation.navigate("Metal")}
-                                />  
-                            </View>
-
-                            <View style={{ marginTop: 40, paddingHorizontal: 20 }}>
-                                <Text style={{ fontSize: 24, fontWeight: '700' }}>
-                                    Non-Recyclables
-                                </Text>
-                                <View style={{ width: width - 40, height: 200, marginTop: 20 }}>
-                                    <Image
-                                        style={{ flex: 1, height: null, width: null, resizeMode: 'contain', borderRadius: 5, borderWidth: 1, borderColor: '#dddddd' }}
-                                        source={require('../assets/no.png')}
-                                    />
-                                </View>
-                                <Button  
-                                    title="More Info"  
-                                    onPress={() => this.props.navigation.navigate("Nonrecyclables")}
-                                />  
-                            </View>
+                            <SubcategoryCard type="plastic"/>
+                            <SubcategoryCard type="paper"/>
+                            <SubcategoryCard type="glass"/>
+                            <SubcategoryCard type="ewaste"/>
+                            <SubcategoryCard type="metal"/>
+                            <SubcategoryCard type="no"/>
 
                             <View style={{ marginTop: 40, paddingHorizontal: 20 }}>
                                 <Text style={{ fontSize: 24, fontWeight: '700' }}>
