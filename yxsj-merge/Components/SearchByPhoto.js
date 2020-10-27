@@ -6,21 +6,16 @@ import TensorJS from './TF';
 import filter from "lodash.filter";
 import _ from "lodash";
 import { IconButton } from "react-native-paper";
-
+import Loader from './Loader';
 
 //Instantiate TensorJS model
 // let TensorJS.shared = new TensorJS();
 class SearchByPhoto extends React.Component{
-  // constructor (props) {
-  //   super(props);
-    
-    
-  // }
+  constructor(props){
+    super(props);
+  }
   componentDidMount() {
     console.log('componentDidMount() initialising model');
-
-    // wait for model to init
-    // TensorJS.shared.init()
   }
 
   
@@ -28,6 +23,7 @@ class SearchByPhoto extends React.Component{
     pickedImage: null,
     category: null,
     picture: null,
+    loading: false
   }
   verifyPermissions = async () => {
     console.log("Verifying Permissions...")
@@ -49,6 +45,9 @@ class SearchByPhoto extends React.Component{
     if (!hasPermission) {
       return;
     }
+    this.setState({
+      loading: true
+    });
     const image = await ImagePicker.launchCameraAsync({
       allowsEditing: true,
       aspect: [16, 16],
@@ -65,6 +64,9 @@ class SearchByPhoto extends React.Component{
         console.log("Classifying...")
         await TensorJS.shared.classifyImage(image)
         const classificationResult = TensorJS.shared.state.predictions[0]
+        this.setState({
+          loading: false
+        });
         this.navigateToSubcategory(classificationResult)
         console.log("Done classifying!")
       }
@@ -139,6 +141,7 @@ class SearchByPhoto extends React.Component{
       imageStyle= {{opacity:0.6}}
       style={styles.backgroundImage}
       >
+        <Loader loading={this.state.loading} />
         <View style={styles.imagePicker}>
         <View style={styles.imagePreview}>
         {!this.state.pickedImage ? (

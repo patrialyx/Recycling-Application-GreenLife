@@ -57,7 +57,7 @@ class Home extends Component {
     return (
       <View style={styles.screen}>
         {/* header */}
-        <TouchableOpacity style = {styles.header} onPress={()=> console.log(this.state.total_points)}> 
+        <TouchableOpacity style = {styles.header} onPress={()=> console.log(this.state.hist)}> 
         <Text style={{fontSize:30}}>gREenlife</Text>
         </TouchableOpacity>
         {/* funfact */}
@@ -74,7 +74,7 @@ class Home extends Component {
             </View>
         </TouchableOpacity>
         {/* search container */}
-        <TouchableOpacity style = {styles.search} onPress={()=> console.log("search pressed")}>
+        <TouchableOpacity style = {styles.search} onPress={()=>this.props.navigation.navigate('Search')}>
           <Image 
             source={require('../assets/loupe.png')} 
             style={{ width: 50, height: 50, resizeMode: 'contain',flex: 1}}
@@ -82,7 +82,7 @@ class Home extends Component {
           <Text style={{fontSize:30,flex:2,fontWeight: 'bold'}}>Search</Text> 
         </TouchableOpacity>
         {/* progress container */}
-        <TouchableOpacity style = {styles.progress} onPress={()=>this.props.navigation.navigate('Points',{total_points:this.state.total_points,percent:this.state.percent,hist: this.state.hist})}>
+        <TouchableOpacity style = {styles.progress} onPress={()=>this.props.navigation.navigate('Points',{total_points:this.state.total_points,percent:this.state.percent,hist: this.state.hist,level:this.state.level})}>
           <Text style={{fontSize:30,fontWeight: 'bold',paddingTop:10}}>My Progress</Text> 
           <Text style={{fontSize:20}}>Level {this.state.level}</Text> 
           

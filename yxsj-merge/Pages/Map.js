@@ -24,7 +24,10 @@ state = {
   category: 0,
   destination: {},
   direction: false,
-  intitalRegion: {},
+  intitalRegion: {  
+    latitude: 1.3483,
+    longitude: 103.6831
+  },
   mapRegion: {}
 }
 
@@ -59,7 +62,7 @@ pinColor = (category) => {
 getCurrentLocation = async() => {
   navigator.geolocation.getCurrentPosition(
       position => {
-      let region = {
+        let region = {
               latitude: parseFloat(position.coords.latitude),
               longitude: parseFloat(position.coords.longitude),
               latitudeDelta: 0.09,
@@ -80,8 +83,12 @@ getCurrentLocation = async() => {
 }
 
 goToInitialLocation = () => {
+  this.state.initialRegion = {  
+    latitude: 2.3483,
+    longitude: 103.7930,
+  };
   let initialRegion = Object.assign({}, this.state.initialRegion);
-  console.log("Did it change here?", this.state.initialRegion)
+  console.log("Did it change here?", this.state.initialRegion);
   initialRegion["latitudeDelta"] = 0.09;
   initialRegion["longitudeDelta"] = 0.09;
   this.mapView.animateToRegion(initialRegion, 2000);
@@ -163,7 +170,7 @@ render() {
                 this.state.initialRegion.latitude,
                 this.state.initialRegion.longitude,
                 this.state.destination.latitude,
-                this.state.destination.longitude)}m
+                this.state.destination.longitude)}
             </Text>
             <Text style={styles.distance}>
               Category: {this.state.category}

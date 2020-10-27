@@ -34,7 +34,7 @@ class SearchByText extends React.Component{
       this.setState({
         fullData: doc,
         data: doc,
-      }, () => console.log(this.state.fullData))
+      })
     });
     this.setState({
       isLoading: false,
@@ -114,7 +114,7 @@ class SearchByText extends React.Component{
               <IconButton
                 icon="camera"
                 size={20}
-                onPress={() => this.props.navigation.navigate("SearchByPhoto")}
+                onPress={() => this.props.navigation.navigate("SearchByPhoto", {fullData: this.state.fullData})}
                 />
             </View>
           }
