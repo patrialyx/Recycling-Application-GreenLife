@@ -15,59 +15,34 @@ import Fire from "../Backend/Fire";
 
 import { IconButton } from "react-native-paper";
 import { useIsFocused } from "@react-navigation/native";
+import { render } from "react-dom";
 
-export default function SearchByText({ route, navigation }) {
-  let prediction = "";
-  //isFocused is used so that if user previously searched by image 
-  //and is led back to this page, we can ensure that the useEffect hook is 
-  //run again and the results are filtered according to mobileNet's predictions
-  //if we don't use this, the useEffect hook won't run again upon navigating back
-  //because the page wasn't destroyed/already loaded up
-  
+class SearchByText extends React.Component{
+  state = {
+    isLoading: false,
+    query: "",
+    fullData: [],
+    data: [],
+  };
 
-  const isFocused = useIsFocused();
-
-
-  const [isLoading, setIsLoading] = useState(false);
-  const [query, setQuery] = useState(prediction);
-  const [fullData, setFullData] = useState([]);
-  const [data, setData] = useState([]);
-
-  useEffect(() => {
-    setIsLoading(true);
+  componentDidMount() {
+    this.setState({
+      isLoading: true
+    })
     //load the whole list
     Fire.shared.getSearchResults().then((doc) => {
-      setFullData(doc);
-      setData(doc);
-      //if user previously searched by image
-      const imagePrediction = route.params
-      //ensure that the image prediction object is not null
-      if (imagePrediction != undefined){
-        console.log("imagePrediction is " + imagePrediction);
-        prediction = imagePrediction.prediction
-        console.log("prediction is " + prediction);
-        //filter the data using the prediction from mobileNet
-        //and straightaway display the result (setData is called within handleSearch)
-        {handleSearch(prediction)};
-        console.log("this is the data " + data)
-      } else{
-        //otherwise set data to be the same as fullData 
-        setData(doc);
-      }
+      this.setState({
+        fullData: doc,
+        data: doc,
+      })
     });
-    setIsLoading(false);
-  }, [isFocused]);
-  
-
-  if (isLoading) {
-    return (
-      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-        <ActivityIndicator size="large" color="#5500dc" />
-      </View>
-    );
+    this.setState({
+      isLoading: false,
+    })
   }
+
   
-  const EmptyListMessage = () => {
+  EmptyListMessage = () => {
     return (
       // Flat List Item
       <Text style={styles.emptyListStyle}>
@@ -75,19 +50,20 @@ export default function SearchByText({ route, navigation }) {
       </Text>
     );
   };
-
-
-  const handleSearch = (text) => {
+  
+  
+  handleSearch = (text) => {
     const formattedQuery = text.toLowerCase();
-    const filteredData = filter(fullData, (user) => {
-      return contains(user, formattedQuery);
+    const filteredData = filter(this.state.fullData, (user) => {
+      return this.contains(user, formattedQuery);
     });
-    setData(filteredData);
-    // console.log(filteredData);
-    setQuery(text);
+    this.setState({
+      data: filteredData,
+      query: text,
+    })
   };
-
-  const contains = ({ id, title, picture, synonyms }, query) => {
+  
+  contains = ({ id, title, picture, synonyms }, query) => {
     const name = title.toLowerCase();
     const otherNames = synonyms.toLowerCase();
     //use regex to split model predictions into array of query substrings
@@ -100,58 +76,68 @@ export default function SearchByText({ route, navigation }) {
       //as long as one of the query substrings are in either the title or the 
       //synonyms, the index returned will not be -1 
       if ((name.indexOf(queryarray[length])!=-1)||(otherNames.indexOf(queryarray[length])!=-1)) {
-          return true;
+        return true;
       }
     }
     return false;
   };
-
-
-  return (
-    <View style={styles.container}>
-      <Text style={styles.text}>What do you want to recycle?</Text>
-      <FlatList
-        showsVerticalScrollIndicator={false}
-        ListHeaderComponent={
-          <View style={styles.listHeader}>
-            <TextInput
-              autoCapitalize="none"
-              autoCorrect={false}
-              clearButtonMode="always"
-              value={query}
-              onChangeText={(queryText) => handleSearch(queryText)}
-              placeholder="Search"
-              style={{
-                backgroundColor: "#fff",
-                paddingHorizontal: 20,
-                alignItems: "stretch",
-                width: "80%",
-              }}
-            />
-            <IconButton
-              icon="camera"
-              size={20}
-              onPress={() => navigation.navigate("ImgPicker", {fullData: fullData})}
-            />
-          </View>
-        }
-        data={data}
-        keyExtractor={(item) => item.id}
-        //Message to show for the Empty list
-        ListEmptyComponent={EmptyListMessage}
-        renderItem={({ item }) => (
-          <TouchableOpacity onPress={() => navigation.navigate("Subcategory", item)}>
-            <View style={styles.listItem}>
-              <Image source={{ uri: item.picture }} style={styles.coverImage} />
-              <View style={styles.metaInfo}>
-                <Text style={styles.title}>{item.title}</Text>
-              </View>
+  
+  render(){
+    if (this.state.isLoading) {
+      return (
+        <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+          <ActivityIndicator size="large" color="#5500dc" />
+        </View>
+      );
+    } else {
+      return (
+        <View style={styles.container}>
+        <Text style={styles.text}>What do you want to recycle?</Text>
+        <FlatList
+          showsVerticalScrollIndicator={false}
+          ListHeaderComponent={
+            <View style={styles.listHeader}>
+              <TextInput
+                autoCapitalize="none"
+                autoCorrect={false}
+                clearButtonMode="always"
+                value={this.state.query}
+                onChangeText={(queryText) => this.handleSearch(queryText)}
+                placeholder="Search"
+                style={{
+                  backgroundColor: "#fff",
+                  paddingHorizontal: 20,
+                  alignItems: "stretch",
+                  width: "80%",
+                }}
+                />
+              <IconButton
+                icon="camera"
+                size={20}
+                onPress={() => this.props.navigation.navigate("SearchByPhoto")}
+                />
             </View>
-          </TouchableOpacity>
-        )}
-      />
-    </View>
-  );
+          }
+          data={this.state.data}
+          keyExtractor={(item) => item.id}
+          //Message to show for the Empty list
+          ListEmptyComponent={() => this.EmptyListMessage()}
+          renderItem={({ item }) => (
+            <TouchableOpacity onPress={() => this.props.navigation.navigate("SubcategoryInterface", item)}>
+              <View style={styles.listItem}>
+                <Image source={{ uri: item.picture }} style={styles.coverImage} />
+                <View style={styles.metaInfo}>
+                  <Text style={styles.title}>{item.title}</Text>
+                </View>
+              </View>
+            </TouchableOpacity>
+          )}
+          />
+      </View>
+    );
+    
+  }
+  }
 }
 
 const styles = StyleSheet.create({
@@ -209,3 +195,4 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
 });
+export default SearchByText;

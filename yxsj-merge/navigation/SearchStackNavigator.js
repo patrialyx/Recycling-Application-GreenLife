@@ -4,7 +4,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 
 import SearchByText from "../Components/SearchByText"
 import SearchByPhoto from "../Components/SearchByPhoto"
-import SearchHome from "../Pages/SearchHome"
+
 import QRScanner from "../Pages/QRScanner"
 
 //Import Components that involve Camera
@@ -15,7 +15,6 @@ const Stack = createStackNavigator();
 const SearchStackNavigator = () => {
     return (
         <Stack.Navigator>
-            <Stack.Screen name="SearchHome" component={SearchHome} />
             <Stack.Screen name="SearchByText" component={SearchByText} />
             <Stack.Screen name="SearchByPhoto" component={SearchByPhoto} />
             <Stack.Screen name="QRScanner" component={QRScanner} />
