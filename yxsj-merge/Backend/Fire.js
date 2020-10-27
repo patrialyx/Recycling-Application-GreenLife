@@ -7,6 +7,7 @@ class Fire {
   constructor() {
     this.init();
     this.onAuthStateChanged()
+    this.getAllBins()
   }
 
   init = async () => {
@@ -240,22 +241,36 @@ class Fire {
   }
 
   // ============ xy ====================
-  getAllBins = () => {
+  getAllBins = async () => {
     console.log('in get bins')
-    // try {
-      this.db.collection('bins').get().then((snap)=>{
-        const merged = [].concat.apply([], snap.docs.map(obj => obj.data().data))
-        console.log('length of merged', merged.length)
-        return merged
-
-      })
-    // } catch (e) {
-    //   console.log('error: ', e.message)
-    // }
+    try {
+      const snap = await this.db.collection('bins').get()
+      const merged = [].concat.apply([], snap.docs.map(obj => obj.data().data))
+      console.log('length of merged', merged.length)
+      this.bins = merged
+    } catch (e) {
+      console.log('error: ', e.message)
+      this.bins = []
+    }
   }
+  // getAllBins = async () => {
+  //   console.log('in get bins')
+  //   try {
+  //     this.db.collection('bins').get().then((snap)=>{
+  //       const merged = [].concat.apply([], snap.docs.map(obj => obj.data().data))
+  //       console.log('length of merged', merged.length)
+  //       return merged
+
+  //     })
+  //   } catch (e) {
+  //     console.log('error: ', e.message)
+  //     return []
+  //   }
+  // }
 
   
 }
 
 Fire.shared = new Fire();
+
 export default Fire;
