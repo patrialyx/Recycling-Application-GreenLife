@@ -83,11 +83,15 @@ class Home extends Component {
         </TouchableOpacity>
         {/* progress container */}
         <TouchableOpacity style = {styles.progress} onPress={()=>this.props.navigation.navigate('Points',{total_points:this.state.total_points,percent:this.state.percent,hist: this.state.hist,level:this.state.level})}>
-          <Text style={{fontSize:30,fontWeight: 'bold',paddingTop:10}}>My Progress</Text> 
-          <Text style={{fontSize:20}}>Level {this.state.level}</Text> 
+        <Text style={{fontSize:30,fontWeight: 'bold',paddingTop:10}}>My Progress</Text> 
+          <Text style={{fontSize:20}}>{Fire.shared.user.displayName}</Text> 
           <View style={{flexDirection: 'row', justifyContent: 'space-evenly', flexWrap: 'wrap', alignItems: 'center',paddingLeft:'10%'}}>
             <Donut percentage={this.state.percent}/>
-            <Text style={{flex:1, fontSize:20, marginLeft:50}}>{this.state.next_level} points to the next level</Text> 
+            <View style={{flex:1, fontSize:20, marginLeft:10}}>
+            <Text style={{fontSize:20,fontWeight: 'bold'}}>Level {this.state.level}</Text>
+              <Text style={{fontSize:20,fontWeight: 'bold'}}>Total Points {this.state.total_points}</Text>   
+              <Text style={{fontSize:15}}>{this.state.next_level} points to the next level</Text> 
+            </View>
           </View>
         </TouchableOpacity>
         <StatusBar style="auto" />
