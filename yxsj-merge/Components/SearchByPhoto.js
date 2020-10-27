@@ -46,7 +46,7 @@ class SearchByPhoto extends React.Component{
       return;
     }
     this.setState({
-      loading: true
+      loading: true,
     });
     const image = await ImagePicker.launchCameraAsync({
       allowsEditing: true,
@@ -58,6 +58,8 @@ class SearchByPhoto extends React.Component{
     this.setState({
       pickedImage: image.uri
     })
+    console.log("pickedImage is now", this.state.pickedImage)
+
     TensorJS.shared.state.image = image;
     try {
       if (TensorJS.shared.state.isTfReady && TensorJS.shared.state.isModelReady){
@@ -93,6 +95,7 @@ class SearchByPhoto extends React.Component{
       this.props.navigation.navigate("SubcategoryInterface", {category: this.state.category, picture: this.state.picture})
     } else {
       console.log("object could not be found in database")
+      console.log("pickedImage is currently", this.state.pickedImage)
       Alert.alert(
         "Error!",
         "Object could not be found in database!",
@@ -101,6 +104,7 @@ class SearchByPhoto extends React.Component{
         ],
         { cancelable: false }
       );
+      this.forceUpdate()
     }
   }
     
@@ -167,21 +171,25 @@ class SearchByPhoto extends React.Component{
       
 const styles = StyleSheet.create({
   imagePicker: {
+    width: '80%',
+    height: '70%',
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: 10
+    marginBottom: 10,
+    marginRight: 10,
+    marginLeft: 10,
   },
   imagePreview: {
     width: '100%',
-    height: 230,
-    marginBottom: 10,
+    height: '70%',
+    marginBottom: 30,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: "#CACC90",
     opacity:1,
     borderColor: '#fff',
-    borderWidth: 1,
+    borderWidth: 0,
     borderRadius: 10
   },
   image: {
@@ -191,7 +199,7 @@ const styles = StyleSheet.create({
   },
   textPlaceHolder: {
     fontSize: 25,
-    width: 200,
+    width: 250,
     padding: 1,
     color: '#fff',
     fontWeight: "bold",
