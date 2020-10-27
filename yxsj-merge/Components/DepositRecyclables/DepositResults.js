@@ -6,7 +6,7 @@ import {
   ImageBackground,
   TouchableOpacity,
 } from "react-native";
-import Fire from "../../Fire";
+import Fire from "../../Backend/Fire";
 
 class DepositResults extends React.Component {
   constructor() {

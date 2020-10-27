@@ -15,86 +15,48 @@ import Fire from "../Backend/Fire";
 
 import { IconButton } from "react-native-paper";
 import { useIsFocused } from "@react-navigation/native";
-import { render } from "react-dom";
 
-class SearchByText extends React.Component{
+export default function SearchByText({ route, navigation }) {
+  let prediction = "";
   //isFocused is used so that if user previously searched by image 
   //and is led back to this page, we can ensure that the useEffect hook is 
   //run again and the results are filtered according to mobileNet's predictions
   //if we don't use this, the useEffect hook won't run again upon navigating back
   //because the page wasn't destroyed/already loaded up
-  constructor(props) {
-    super(props);
-    
-    this.state = {
-      prediction: "",
-      isLoading: false,
-      query: prediction,
-      fullData: [],
-      data: [],
-    };
-  }
   
 
-  // this.setState({
-  //   pickedImage: image.uri
-  // })
+  const isFocused = useIsFocused();
 
 
-  componentDidMount() {
-    this.props.navigation.addListener(
-      'didFocus',
-      payload => {
-        this.forceUpdate();
-      }
-    )
-    this.setState({
-      isLoading: true
-    })
+  const [isLoading, setIsLoading] = useState(false);
+  const [query, setQuery] = useState(prediction);
+  const [fullData, setFullData] = useState([]);
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    setIsLoading(true);
     //load the whole list
     Fire.shared.getSearchResults().then((doc) => {
-      this.setState({
-        fullData: doc,
-        data: doc,
-      })
-      // setFullData(doc);
-      // setData(doc);
-
+      setFullData(doc);
+      setData(doc);
       //if user previously searched by image
-      const imagePrediction = this.props.route.params
-
+      const imagePrediction = route.params
       //ensure that the image prediction object is not null
       if (imagePrediction != undefined){
         console.log("imagePrediction is " + imagePrediction);
-
-        
-        this.state.prediction = imagePrediction.prediction
-
-
-        console.log("prediction is " + this.state.prediction);
+        prediction = imagePrediction.prediction
+        console.log("prediction is " + prediction);
         //filter the data using the prediction from mobileNet
         //and straightaway display the result (setData is called within handleSearch)
-        handleSearch(this.state.prediction);
+        {handleSearch(prediction)};
         console.log("this is the data " + data)
       } else{
         //otherwise set data to be the same as fullData 
-        this.setState({
-          data: doc,
-        })
+        setData(doc);
       }
     });
-    this.setState({
-      isLoading: false,
-    })
-      // setIsLoading(false);
-  }
-
-  // const [isLoading, setIsLoading] = useState(false);
-  // const [query, setQuery] = useState(prediction);
-  // const [fullData, setFullData] = useState([]);
-  // const [data, setData] = useState([]);
-
-
+    setIsLoading(false);
+  }, [isFocused]);
   
 
   if (isLoading) {
@@ -105,7 +67,7 @@ class SearchByText extends React.Component{
     );
   }
   
-  EmptyListMessage = () => {
+  const EmptyListMessage = () => {
     return (
       // Flat List Item
       <Text style={styles.emptyListStyle}>
@@ -115,20 +77,17 @@ class SearchByText extends React.Component{
   };
 
 
-  handleSearch = (text) => {
+  const handleSearch = (text) => {
     const formattedQuery = text.toLowerCase();
     const filteredData = filter(fullData, (user) => {
-      return this.contains(user, formattedQuery);
+      return contains(user, formattedQuery);
     });
-    this.setState({
-      data: filteredData,
-      query: text,
-    })
-    // setData(filteredData);
-    // setQuery(text);
+    setData(filteredData);
+    // console.log(filteredData);
+    setQuery(text);
   };
 
-  contains = ({ id, title, picture, synonyms }, query) => {
+  const contains = ({ id, title, picture, synonyms }, query) => {
     const name = title.toLowerCase();
     const otherNames = synonyms.toLowerCase();
     //use regex to split model predictions into array of query substrings
@@ -147,54 +106,52 @@ class SearchByText extends React.Component{
     return false;
   };
 
-  render(){
-    return (
-      <View style={styles.container}>
-        <Text style={styles.text}>What do you want to recycle?</Text>
-        <FlatList
-          showsVerticalScrollIndicator={false}
-          ListHeaderComponent={
-            <View style={styles.listHeader}>
-              <TextInput
-                autoCapitalize="none"
-                autoCorrect={false}
-                clearButtonMode="always"
-                value={query}
-                onChangeText={(queryText) => this.handleSearch(queryText)}
-                placeholder="Search"
-                style={{
-                  backgroundColor: "#fff",
-                  paddingHorizontal: 20,
-                  alignItems: "stretch",
-                  width: "80%",
-                }}
-              />
-              <IconButton
-                icon="camera"
-                size={20}
-                onPress={() => this.props.navigation.navigate("ImgPicker")}
-              />
-            </View>
-          }
-          data={data}
-          keyExtractor={(item) => item.id}
-          //Message to show for the Empty list
-          ListEmptyComponent={() => this.EmptyListMessage()}
-          renderItem={({ item }) => (
-            <TouchableOpacity onPress={() => this.props.navigation.navigate("Subcategory", item)}>
-              <View style={styles.listItem}>
-                <Image source={{ uri: item.picture }} style={styles.coverImage} />
-                <View style={styles.metaInfo}>
-                  <Text style={styles.title}>{item.title}</Text>
-                </View>
-              </View>
-            </TouchableOpacity>
-          )}
-        />
-      </View>
-    );
 
-  }
+  return (
+    <View style={styles.container}>
+      <Text style={styles.text}>What do you want to recycle?</Text>
+      <FlatList
+        showsVerticalScrollIndicator={false}
+        ListHeaderComponent={
+          <View style={styles.listHeader}>
+            <TextInput
+              autoCapitalize="none"
+              autoCorrect={false}
+              clearButtonMode="always"
+              value={query}
+              onChangeText={(queryText) => handleSearch(queryText)}
+              placeholder="Search"
+              style={{
+                backgroundColor: "#fff",
+                paddingHorizontal: 20,
+                alignItems: "stretch",
+                width: "80%",
+              }}
+            />
+            <IconButton
+              icon="camera"
+              size={20}
+              onPress={() => navigation.navigate("ImgPicker", {fullData: fullData})}
+            />
+          </View>
+        }
+        data={data}
+        keyExtractor={(item) => item.id}
+        //Message to show for the Empty list
+        ListEmptyComponent={EmptyListMessage}
+        renderItem={({ item }) => (
+          <TouchableOpacity onPress={() => navigation.navigate("Subcategory", item)}>
+            <View style={styles.listItem}>
+              <Image source={{ uri: item.picture }} style={styles.coverImage} />
+              <View style={styles.metaInfo}>
+                <Text style={styles.title}>{item.title}</Text>
+              </View>
+            </View>
+          </TouchableOpacity>
+        )}
+      />
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
@@ -252,4 +209,3 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
 });
-export default SearchByText;

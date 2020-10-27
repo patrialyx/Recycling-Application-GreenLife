@@ -10,7 +10,7 @@ import { IconButton } from "react-native-paper";
 
 //Instantiate TensorJS model
 // let TensorJS.shared = new TensorJS();
-class ImgPicker extends React.Component{
+class SearchByPhoto extends React.Component{
   // constructor (props) {
   //   super(props);
     
@@ -203,4 +203,4 @@ const styles = StyleSheet.create({
     // height: "100%",
   },
 });
-export default ImgPicker;
+export default SearchByPhoto;
