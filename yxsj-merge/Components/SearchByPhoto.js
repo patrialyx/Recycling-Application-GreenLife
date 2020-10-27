@@ -7,6 +7,7 @@ import filter from "lodash.filter";
 import _ from "lodash";
 import { IconButton } from "react-native-paper";
 import Loader from './Loader';
+// import HeaderImageScrollView from 'react-native-image-header-scroll-view';
 
 //Instantiate TensorJS model
 // let TensorJS.shared = new TensorJS();
