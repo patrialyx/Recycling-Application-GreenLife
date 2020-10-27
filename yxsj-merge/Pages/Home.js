@@ -57,7 +57,7 @@ class Home extends Component {
     return (
       <View style={styles.screen}>
         {/* header */}
-        <TouchableOpacity style = {styles.header} onPress={()=> console.log(this.state.hist)}> 
+        <TouchableOpacity style = {styles.header} onPress={()=> this.props.navigation.navigate("Education")}> 
         <Text style={{fontSize:30}}>gREenlife</Text>
         </TouchableOpacity>
         {/* funfact */}
@@ -85,7 +85,6 @@ class Home extends Component {
         <TouchableOpacity style = {styles.progress} onPress={()=>this.props.navigation.navigate('Points',{total_points:this.state.total_points,percent:this.state.percent,hist: this.state.hist,level:this.state.level})}>
           <Text style={{fontSize:30,fontWeight: 'bold',paddingTop:10}}>My Progress</Text> 
           <Text style={{fontSize:20}}>Level {this.state.level}</Text> 
-          
           <View style={{flexDirection: 'row', justifyContent: 'space-evenly', flexWrap: 'wrap', alignItems: 'center',paddingLeft:'10%'}}>
             <Donut percentage={this.state.percent}/>
             <Text style={{flex:1, fontSize:20, marginLeft:50}}>{this.state.next_level} points to the next level</Text> 

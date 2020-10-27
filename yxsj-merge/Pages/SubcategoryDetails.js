@@ -47,7 +47,7 @@ class SubcategoryDetails extends Component {
             <Text style={styles.sectionContent}>Do your part and deposit these items in the nearest recycling bin! </Text>
           </View>
         )
-      case "E-waste":
+      case "Ewaste":
         return (
           <View style={{flexDirection: 'column', justifyContent: 'space-between'}}>
             <Text style={styles.sectionTitle}>E-Waste Items: Laptop, Printer, Mobile Phones, Hard Disk Drives, Battery Chargers</Text>
@@ -65,7 +65,7 @@ class SubcategoryDetails extends Component {
             <Text style={styles.sectionContent}>Do your part and deposit these items in the nearest recycling bin! </Text>
           </View>
         )
-      case "Non-recyclables":
+      case "Nonrecyclable":
         return (
           <View style={{flexDirection: 'column', justifyContent: 'space-between'}}>
             <Text style={styles.sectionTitle}>Non-Recyclables Items: Items with Food or Liquid Waste (eg. banana, pizza boxes), Styrofoam, Ceramics, Polystyrene</Text>
@@ -100,7 +100,7 @@ class SubcategoryDetails extends Component {
             source={require('../assets/glass.jpeg')}
           />
         )
-      case "E-waste":
+      case "Ewaste":
         return (
           <Image
             style={{ flex: 1, height: null, width: null, resizeMode: 'contain', borderRadius: 5, borderWidth: 1, borderColor: '#dddddd' }}
@@ -114,7 +114,7 @@ class SubcategoryDetails extends Component {
             source={require('../assets/metal.jpeg')}
           />
         )
-      case "Non-recyclables":
+      case "Nonrecyclable":
         return (
           <Image
             style={{ flex: 1, height: null, width: null, resizeMode: 'contain', borderRadius: 5, borderWidth: 1, borderColor: '#dddddd' }}
@@ -144,7 +144,7 @@ class SubcategoryDetails extends Component {
             <Text style={{ backgroundColor: "transparent", fontSize:50, color:"white" }}>Glass</Text>
           </View>
         )
-      case "E-waste":
+      case "Ewaste":
         return (
           <View style={{ flex: 1, justifyContent: "flex-end", alignItems: "center" }} >
             <Text style={{ backgroundColor: "transparent", fontSize:50, color:"white" }}>E-Waste</Text>
@@ -156,7 +156,7 @@ class SubcategoryDetails extends Component {
             <Text style={{ backgroundColor: "transparent", fontSize:50, color:"white" }}>Metal</Text>
           </View>
         )
-      case "Non-recyclables":
+      case "Nonrecyclable":
         return (
           <View style={{ flex: 1, justifyContent: "flex-end", alignItems: "center" }} >
             <Text style={{ backgroundColor: "transparent", fontSize:50, color:"white" }}>Non-Recyclable</Text>

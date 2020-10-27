@@ -21,11 +21,11 @@ class SubcategoryCard extends Component {
         return "Paper"
       case "Glass":
         return "Glass"
-      case "E-waste":
+      case "Ewaste":
         return "E-Waste"
       case "Metal":
         return "Metal"
-      case "Non-recyclables":
+      case "Nonrecyclable":
         return "Non-Recyclables"
     }
   }
@@ -55,7 +55,7 @@ class SubcategoryCard extends Component {
             source={require('../assets/glass.png')}
           />
         )
-      case "E-waste":
+      case "Ewaste":
         return (
           <Image
             style={{ flex: 1, height: null, width: null, resizeMode: 'contain', borderRadius: 5, borderWidth: 1, borderColor: '#dddddd' }}
@@ -69,7 +69,7 @@ class SubcategoryCard extends Component {
             source={require('../assets/metal.png')}
           />
         )
-      case "Non-recyclables":
+      case "Nonrecyclable":
         return (
           <Image
             style={{ flex: 1, height: null, width: null, resizeMode: 'contain', borderRadius: 5, borderWidth: 1, borderColor: '#dddddd' }}

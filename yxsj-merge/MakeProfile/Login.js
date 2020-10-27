@@ -45,8 +45,8 @@ class Login extends React.Component {
     // to access database
     // await Fire.shared.db.doc('test/doc1').set({field: "bye"})
     
-    this.setState(initialState)
     const success = await Fire.shared.handleLogin(email, password)
+    this.setState(initialState)
     if (success) {
       this.props.navigation.navigate('TabNavigator');
     }
@@ -165,7 +165,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
   },
   main: {
-    margin: 0,
+    margin: 20,
   },
   image: {
     marginBottom: 20,

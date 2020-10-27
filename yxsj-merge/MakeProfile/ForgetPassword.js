@@ -26,9 +26,6 @@ class ForgetPassword extends React.Component {
     })
   };
 
-  handleSubmit = (email) => {
-    this.props.navigation.navigate('Register')
-  };
 
   handleForgetPassword = async (email) => {
     this.setState(initialState)

@@ -33,16 +33,6 @@ export default class Map extends React.Component {
     others: 2
   }
 
-  // loadAsyncData() {    
-
-  //     console.log("This is running");
-  //     Fire.shared.getAllBins().then((response)=> {
-  //       console.log('length of response', response.length)
-  //       this.setState({response});
-  //     }).catch(function (e) {
-  //     console.log("error in getting bins pls work", e)
-  //   })
-  // }
 
   walkTime = (distance) => {return distance/5}
 
@@ -105,14 +95,11 @@ export default class Map extends React.Component {
 
   componentDidMount(){
     this.getCurrentLocation();
-    // this.loadAsyncData()
+
     console.log("componentDidMount():", this.state.intitalRegion)
   }
 
-  // renderPins = () => {
-    // console.log("in Render Pins", Fire.shared.bins[0])
-    
-  // }
+
 
   render() {
     return (
@@ -157,40 +144,6 @@ export default class Map extends React.Component {
       )
       }
 
-          {/* {response.map((marker) => (
-          <MapView.Marker
-            key={marker.id}
-            identifier={marker.id}
-            coordinate={marker.coordinates}
-            title={marker.title}
-            pinColor={this.pinColor(marker.category)}
-            onPress={() => {
-                this.setState({
-                  destination: marker.coordinates,
-                  direction: false,
-                  card: true,
-                  category: marker.category,
-                });
-              }}
-          />
-        ))}  */}
-          {/* {Fire.shared.bins.map((marker) => (
-          <MapView.Marker
-            key={marker.uid}
-            identifier={marker.uid.toString()}
-            coordinate={marker.coord}
-            title={marker.title}
-            pinColor={this.pinColor(marker.category)}
-            onPress={() => {
-                this.setState({
-                  destination: marker.coord,
-                  direction: false,
-                  card: true,
-                  category: marker.category,
-                });
-              }}
-          />
-        ))}  */}
 
           {((this.state.destination) && this.state.direction) ?(
             <MapViewDirections
