@@ -15,17 +15,17 @@ const { height, width } = Dimensions.get('window')
 class SubcategoryCard extends Component {
   renderTitle = () => {
     switch (this.props.type) {
-      case "plastic":
+      case "Plastic":
         return "Plastic"
-      case "paper":
+      case "Paper":
         return "Paper"
-      case "glass":
+      case "Glass":
         return "Glass"
-      case "ewaste":
+      case "E-waste":
         return "E-Waste"
-      case "metal":
+      case "Metal":
         return "Metal"
-      case "no":
+      case "Non-recyclables":
         return "Non-Recyclables"
     }
   }
@@ -34,42 +34,42 @@ class SubcategoryCard extends Component {
   
   renderImage = () => {
     switch (this.props.type) {
-      case "plastic":
+      case "Plastic":
         return (
           <Image
             style={{ flex: 1, height: null, width: null, resizeMode: 'contain', borderRadius: 5, borderWidth: 1, borderColor: '#dddddd' }}
             source={require('../assets/plastic.png')}
           />
         )
-      case "paper":
+      case "Paper":
         return (
           <Image
             style={{ flex: 1, height: null, width: null, resizeMode: 'contain', borderRadius: 5, borderWidth: 1, borderColor: '#dddddd' }}
             source={require('../assets/paper.png')}
           />
         )
-      case "glass":
+      case "Glass":
         return (
           <Image
             style={{ flex: 1, height: null, width: null, resizeMode: 'contain', borderRadius: 5, borderWidth: 1, borderColor: '#dddddd' }}
             source={require('../assets/glass.png')}
           />
         )
-      case "ewaste":
+      case "E-waste":
         return (
           <Image
             style={{ flex: 1, height: null, width: null, resizeMode: 'contain', borderRadius: 5, borderWidth: 1, borderColor: '#dddddd' }}
             source={require('../assets/ewaste.png')}
           />
         )
-      case "metal":
+      case "Metal":
         return (
           <Image
             style={{ flex: 1, height: null, width: null, resizeMode: 'contain', borderRadius: 5, borderWidth: 1, borderColor: '#dddddd' }}
             source={require('../assets/metal.png')}
           />
         )
-      case "no":
+      case "Non-recyclables":
         return (
           <Image
             style={{ flex: 1, height: null, width: null, resizeMode: 'contain', borderRadius: 5, borderWidth: 1, borderColor: '#dddddd' }}

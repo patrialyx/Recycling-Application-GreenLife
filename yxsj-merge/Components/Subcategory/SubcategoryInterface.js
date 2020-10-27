@@ -33,7 +33,7 @@ class SubcategoryInterface extends React.Component {
           <View style={styles.buttonContainer}>
             {/* insert link to different categories */}
             <TouchableOpacity 
-              onPress={() => this.props.navigation.navigate(this.subcategory)} 
+              onPress={() => this.props.navigation.navigate("Subcategory" , {type: this.subcategory})} 
               style={styles.button}
               > 
               <Text>More Info</Text>

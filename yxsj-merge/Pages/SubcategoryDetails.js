@@ -21,7 +21,7 @@ class SubcategoryDetails extends Component {
 
   renderBody = () => {
     switch (this.props.route.params.type) {
-      case "plastic":
+      case "Plastic":
         return (
           <View style={{flexDirection: 'column', justifyContent: 'space-between'}}>
             <Text style={styles.sectionTitle}>Plastic Items: Plastic Packaging, Plastic Boxes, Plastic Bags, Detergent/Shampoo Bottles (rinsed), Juice/ Milk Containers, CD casings, Toiletries containers etc</Text>
@@ -30,7 +30,7 @@ class SubcategoryDetails extends Component {
             <Text style={styles.sectionContent}>Do your part and deposit these items in the nearest recycling bin! </Text>
           </View>
         )
-      case "paper":
+      case "Paper":
         return (
           <View style={{flexDirection: 'column', justifyContent: 'space-between'}}>
             <Text style={styles.sectionTitle}>Paper Items: Cardboard Packaging, Newspaper, Juice/Milk Cartons, Flyers, Magazines etc</Text>
@@ -38,7 +38,7 @@ class SubcategoryDetails extends Component {
             <Text style={styles.sectionContent}>Do your part and deposit these items in the nearest recycling bin! </Text>
           </View>
         )
-      case "glass":
+      case "Glass":
         return (
           <View style={{flexDirection: 'column', justifyContent: 'space-between'}}>
             <Text style={styles.sectionTitle}>Glass Items: Beer/ Condiment Bottle, Jam Jars</Text>
@@ -47,7 +47,7 @@ class SubcategoryDetails extends Component {
             <Text style={styles.sectionContent}>Do your part and deposit these items in the nearest recycling bin! </Text>
           </View>
         )
-      case "ewaste":
+      case "E-waste":
         return (
           <View style={{flexDirection: 'column', justifyContent: 'space-between'}}>
             <Text style={styles.sectionTitle}>E-Waste Items: Laptop, Printer, Mobile Phones, Hard Disk Drives, Battery Chargers</Text>
@@ -56,7 +56,7 @@ class SubcategoryDetails extends Component {
             <Text style={styles.sectionContent}>Do your part and deposit these items in the nearest recycling bin! </Text>
           </View>
           )
-      case "metal":
+      case "Metal":
         return (
           <View style={{flexDirection: 'column', justifyContent: 'space-between'}}>
             <Text style={styles.sectionTitle}>Metal Items:  Drink Cans, Aluminium Cans, Biscuit Tins etc</Text>
@@ -65,7 +65,7 @@ class SubcategoryDetails extends Component {
             <Text style={styles.sectionContent}>Do your part and deposit these items in the nearest recycling bin! </Text>
           </View>
         )
-      case "no":
+      case "Non-recyclables":
         return (
           <View style={{flexDirection: 'column', justifyContent: 'space-between'}}>
             <Text style={styles.sectionTitle}>Non-Recyclables Items: Items with Food or Liquid Waste (eg. banana, pizza boxes), Styrofoam, Ceramics, Polystyrene</Text>
@@ -79,42 +79,42 @@ class SubcategoryDetails extends Component {
 
   renderHeader = () => {
     switch (this.props.route.params.type) {
-      case "plastic":
+      case "Plastic":
         return (
           <Image
             style={{ flex: 1, height: null, width: null, resizeMode: 'contain', borderRadius: 5, borderWidth: 1, borderColor: '#dddddd' }}
             source={require('../assets/plastic.jpeg')}
           />
         )
-      case "paper":
+      case "Paper":
         return (
           <Image
             style={{ flex: 1, height: null, width: null, resizeMode: 'contain', borderRadius: 5, borderWidth: 1, borderColor: '#dddddd' }}
             source={require('../assets/paper.jpeg')}
           />
         )
-      case "glass":
+      case "Glass":
         return (
           <Image
             style={{ flex: 1, height: null, width: null, resizeMode: 'contain', borderRadius: 5, borderWidth: 1, borderColor: '#dddddd' }}
             source={require('../assets/glass.jpeg')}
           />
         )
-      case "ewaste":
+      case "E-waste":
         return (
           <Image
             style={{ flex: 1, height: null, width: null, resizeMode: 'contain', borderRadius: 5, borderWidth: 1, borderColor: '#dddddd' }}
             source={require('../assets/e-waste.jpg')}
           />
         )
-      case "metal":
+      case "Metal":
         return (
           <Image
             style={{ flex: 1, height: null, width: null, resizeMode: 'contain', borderRadius: 5, borderWidth: 1, borderColor: '#dddddd' }}
             source={require('../assets/metal.jpeg')}
           />
         )
-      case "metal":
+      case "Non-recyclables":
         return (
           <Image
             style={{ flex: 1, height: null, width: null, resizeMode: 'contain', borderRadius: 5, borderWidth: 1, borderColor: '#dddddd' }}
@@ -126,37 +126,37 @@ class SubcategoryDetails extends Component {
 
   renderTitle = () => {
     switch (this.props.route.params.type) {
-      case "plastic":
+      case "Platic":
         return (
           <View style={{ flex: 1,justifyContent: "flex-end", alignItems: "center" }} >
             <Text style={{ backgroundColor: "transparent", fontSize:50, color:"white" }}>Plastic</Text>
           </View>
         )
-      case "paper":
+      case "Paper":
         return (
           <View style={{ flex: 1, justifyContent: "flex-end", alignItems: "center" }} >
             <Text style={{ backgroundColor: "transparent", fontSize:50, color:"white" }}>Paper</Text>
           </View>
         )
-      case "glass":
+      case "Glass":
         return (
           <View style={{ flex: 1, justifyContent: "flex-end", alignItems: "center" }} >
             <Text style={{ backgroundColor: "transparent", fontSize:50, color:"white" }}>Glass</Text>
           </View>
         )
-      case "ewaste":
+      case "E-waste":
         return (
           <View style={{ flex: 1, justifyContent: "flex-end", alignItems: "center" }} >
             <Text style={{ backgroundColor: "transparent", fontSize:50, color:"white" }}>E-Waste</Text>
           </View>
         )
-      case "metal":
+      case "Metal":
         return (
           <View style={{ flex: 1, justifyContent: "flex-end", alignItems: "center" }} >
             <Text style={{ backgroundColor: "transparent", fontSize:50, color:"white" }}>Metal</Text>
           </View>
         )
-      case "no":
+      case "Non-recyclables":
         return (
           <View style={{ flex: 1, justifyContent: "flex-end", alignItems: "center" }} >
             <Text style={{ backgroundColor: "transparent", fontSize:50, color:"white" }}>Non-Recyclable</Text>
