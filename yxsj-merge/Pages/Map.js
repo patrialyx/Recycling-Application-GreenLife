@@ -12,94 +12,109 @@ import {
   Button,
 } from "react-native";
 
-// import Fire from "./Fire";
+import Fire from "../Backend/Fire";
 
 height = Dimensions.get("window").height;
 width = Dimensions.get("window").width;
 
 export default class Map extends React.Component {
 
-state = {
-  card: false,
-  category: 0,
-  destination: {},
-  direction: false,
-  intitalRegion: {  
-    latitude: 1.3483,
-    longitude: 103.6831
-  },
-  mapRegion: {}
-}
-
-walkTime = (distance) => {return distance/5}
-
-distance = (lat1, lon1, lat2, lon2) => {  // generally used geo measurement function
-  console.log("Distance state?:", this.state.initialRegion)
-  // lat1 = this.state.intitalRegion.latitude;
-  // lon1 = this.state.intitalRegion.longitude;
-  // lat2 = this.state.destination.latitude;
-  // lon2 = this.state.destination.longitude;
-  var R = 6378.137; // Radius of earth in KM
-  var dLat = lat2 * Math.PI / 180 - lat1 * Math.PI / 180;
-  var dLon = lon2 * Math.PI / 180 - lon1 * Math.PI / 180;
-  var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
-  Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
-  Math.sin(dLon/2) * Math.sin(dLon/2);
-  var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-  var d = R * c;
-  return Math.round(d * 1000); // meters
-}
-
-pinColor = (category) => {
-  switch(category){
-    case(1):
-      return 'blue';
-    case(2):
-      return 'red';
+  state = {
+    card: false,
+    category: 0,
+    destination: {},
+    direction: false,
+    intitalRegion: {},
+    mapRegion: {}
   }
-}
 
-getCurrentLocation = async() => {
-  navigator.geolocation.getCurrentPosition(
-      position => {
+  type = {
+    "e-waste": 1,
+    others: 2
+  }
+
+  // loadAsyncData() {    
+
+  //     console.log("This is running");
+  //     Fire.shared.getAllBins().then((response)=> {
+  //       console.log('length of response', response.length)
+  //       this.setState({response});
+  //     }).catch(function (e) {
+  //     console.log("error in getting bins pls work", e)
+  //   })
+  // }
+
+  walkTime = (distance) => {return distance/5}
+
+  distance = (lat1, lon1, lat2, lon2) => {  // generally used geo measurement function
+    console.log("Distance state?:", this.state.initialRegion)
+    // lat1 = this.state.intitalRegion.latitude;
+    // lon1 = this.state.intitalRegion.longitude;
+    // lat2 = this.state.destination.latitude;
+    // lon2 = this.state.destination.longitude;
+    var R = 6378.137; // Radius of earth in KM
+    var dLat = lat2 * Math.PI / 180 - lat1 * Math.PI / 180;
+    var dLon = lon2 * Math.PI / 180 - lon1 * Math.PI / 180;
+    var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+    Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+    Math.sin(dLon/2) * Math.sin(dLon/2);
+    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+    var d = R * c;
+    return Math.round(d * 1000); // meters
+  }
+
+  pinColor = (category) => {
+    switch(category){
+      case("others"):
+        return 'blue';
+      case("e-waste"):
+        return 'red';
+    }
+  }
+
+  getCurrentLocation = async() => {
+    navigator.geolocation.getCurrentPosition(
+        position => {
         let region = {
-              latitude: parseFloat(position.coords.latitude),
-              longitude: parseFloat(position.coords.longitude),
-              latitudeDelta: 0.09,
-              longitudeDelta: 0.09
-          };
-          this.setState({
-              initialRegion: region
-          });
-          console.log("Initial Region:", this.state.initialRegion)
-      },
-      error => console.log(error),
-      {
-          enableHighAccuracy: true,
-          timeout: 20000,
-          maximumAge: 1000
-      }
-  );
-}
+                latitude: parseFloat(position.coords.latitude),
+                longitude: parseFloat(position.coords.longitude),
+                latitudeDelta: 0.09,
+                longitudeDelta: 0.09
+            };
+            this.setState({
+                initialRegion: region
+            });
+            console.log("Initial Region:", this.state.initialRegion)
+        },
+        error => console.log(error),
+        {
+            enableHighAccuracy: true,
+            timeout: 20000,
+            maximumAge: 1000
+        }
+    );
+  }
 
-goToInitialLocation = () => {
-  this.state.initialRegion = {  
-    latitude: 2.3483,
-    longitude: 103.7930,
-  };
-  let initialRegion = Object.assign({}, this.state.initialRegion);
-  console.log("Did it change here?", this.state.initialRegion);
-  initialRegion["latitudeDelta"] = 0.09;
-  initialRegion["longitudeDelta"] = 0.09;
-  this.mapView.animateToRegion(initialRegion, 2000);
-}
+  goToInitialLocation = () => {
+    let initialRegion = Object.assign({}, this.state.initialRegion);
+    console.log("Did it change here?", this.state.initialRegion)
+    initialRegion["latitudeDelta"] = 0.09;
+    initialRegion["longitudeDelta"] = 0.09;
+    this.mapView.animateToRegion(initialRegion, 2000);
+  }
 
-componentDidMount(){
-  this.getCurrentLocation();
-  console.log("componentDidMount():", this.state.intitalRegion)
- }
+  componentDidMount(){
+    this.getCurrentLocation();
+    // this.loadAsyncData()
+    console.log("componentDidMount():", this.state.intitalRegion)
+  }
 
-render() {
+  // renderPins = () => {
+    // console.log("in Render Pins", Fire.shared.bins[0])
+    
+  // }
+
+  render() {
     return (
       <>
       <MapView
@@ -109,7 +124,7 @@ render() {
           ref={ref => (this.mapView = ref)}
           zoomEnabled={true}
           showsUserLocation={true}
-          onMapReady={this.goToInitialLocation.bind(this)}
+          // onMapReady={this.goToInitialLocation.bind(this)}
           initialRegion={this.state.initialRegion}
           onPress={()=>{
             this.setState({
@@ -117,7 +132,32 @@ render() {
             })
           }}>
 
-          {response.map((marker) => (
+      {Fire.shared.bins.map((marker) => {
+        return (
+          <MapView.Marker
+            key={marker.uid}
+            identifier={marker.uid.toString()}
+            coordinate={{
+              longitude: marker.coord.longitude? marker.coord.longitude : 0,
+              latitude: marker.coord.latitude? marker.coord.latitude : 0, 
+              latitudeDelta: 0.02,
+              longitudeDelta: 0.02
+            }}
+            pinColor={this.pinColor(marker.type)}
+            onPress={() => {
+                this.setState({
+                  destination: marker.coord,
+                  direction: false,
+                  card: true,
+                  category: this.type[marker.type],
+                });
+              }}
+          />
+          )}
+      )
+      }
+
+          {/* {response.map((marker) => (
           <MapView.Marker
             key={marker.id}
             identifier={marker.id}
@@ -133,7 +173,24 @@ render() {
                 });
               }}
           />
-          ))} 
+        ))}  */}
+          {/* {Fire.shared.bins.map((marker) => (
+          <MapView.Marker
+            key={marker.uid}
+            identifier={marker.uid.toString()}
+            coordinate={marker.coord}
+            title={marker.title}
+            pinColor={this.pinColor(marker.category)}
+            onPress={() => {
+                this.setState({
+                  destination: marker.coord,
+                  direction: false,
+                  card: true,
+                  category: marker.category,
+                });
+              }}
+          />
+        ))}  */}
 
           {((this.state.destination) && this.state.direction) ?(
             <MapViewDirections

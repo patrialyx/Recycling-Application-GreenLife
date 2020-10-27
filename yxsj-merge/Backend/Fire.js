@@ -246,7 +246,7 @@ class Fire {
     try {
       const snap = await this.db.collection('bins').get()
       const merged = [].concat.apply([], snap.docs.map(obj => obj.data().data))
-      console.log('length of merged', merged.length)
+      console.log('length of merged', merged[0])
       this.bins = merged
     } catch (e) {
       console.log('error: ', e.message)
