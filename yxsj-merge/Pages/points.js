@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React ,{ Component,useState,useEffect } from 'react';
-import { StyleSheet, Text, View, Button, Image, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, Button, Image, TouchableOpacity,ScrollView } from 'react-native';
 import ProgressBar from '../ProgressBar/progress_bar.js';
 
 
@@ -11,7 +11,8 @@ class Points extends Component {
     this.state = {
       total_points: props.route.params.total_points,
       percent: props.route.params.percent,
-      hist: props.route.params.hist
+      hist: props.route.params.hist.reverse(),
+      level:props.route.params.level
     } 
   }
   render(){
@@ -19,13 +20,21 @@ class Points extends Component {
     <View style={styles.screen}>
       <Text style={{fontSize:30}}>Points History</Text> 
       <ProgressBar value={this.state.percent}/>
-      <Text style={{fontSize:20,paddingTop:10}}>{this.state.total_points} Points</Text> 
+      <Text style={{fontSize:20,paddingTop:10}}>Level {this.state.level}</Text> 
+      <Text style={{fontSize:20,paddingTop:10}}>Total Points: {this.state.total_points}</Text> 
+      <ScrollView 
+          style={{width:'100%', height: '100%'}}
+          contentContainerStyle={{
+            justifyContent: 'space-between'
+        }}>
       {this.state.hist.map((point_value)=>
       <View style={styles.point_box}>
          <Text style={{fontSize:30,fontWeight: 'bold'}}>{point_value['type']} </Text>
-        <Text style={{fontSize:20,fontWeight: 'bold'}}>{point_value['points']} Points</Text>
+          <Text style={{fontSize:20,fontWeight: 'bold'}}>{point_value['points']} Points</Text>
       </View>
       )}
+      </ScrollView>
+      
       <StatusBar style="auto" />
     </View>
     );
