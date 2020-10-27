@@ -196,7 +196,17 @@ class Fire {
     }
     return 2
   }
- 
+
+  getRealtimePoints = (setStateFunction) => {
+    this.db.doc(`users/${this.user.uid}`).onSnapshot((doc)=>{
+      console.log("ineventlistener")
+      if (doc) {
+        const data = doc.data()
+        setStateFunction(data.total_points, data.history)
+      }
+    })
+  }
+
 
   // ============== yuxuan ==================
   reportFault = async (bin_uid, description) => {
