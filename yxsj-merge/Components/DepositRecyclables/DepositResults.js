@@ -20,31 +20,37 @@ class DepositResults extends React.Component {
     this.state = {
       // This is our Default number value
       Type: randomSubcategory,
-      Weight: Math.floor(Math.random()) + 1,
+      Weight: (Math.random()).toFixed(2), //round off to 2 dp
       Points: RandomNumber,
     };
     Fire.shared.submitItem(this.state.Type,this.state.Weight, this.state.Points);
+    console.log(this.state.Type)
+    console.log(this.state.Weight)
+    console.log(this.state.Points)
   }
 
   render() {
     return (
-      <View style={styles.container}>
+      <View>
         <ImageBackground
           source={{
             uri:
-              "https://png.pngtree.com/thumb_back/fw800/back_our/20190621/ourmid/pngtree-small-fresh-green-cute-wavy-border-poster-background-image_203633.jpg",
+              "https://i.pinimg.com/originals/92/c4/d3/92c4d382dca3bb932c9c9205ef2e13ae.jpg",
           }}
+          imageStyle= {{opacity:0.6}}
           style={styles.image}
         >
           <Text style={styles.text}>Items Deposited:</Text>
-          <View style={styles.doneButton}>
-            <Text style={styles.buttonText}>Valid Items</Text>
-            <View></View>
-          </View>
-          <View style={styles.doneButton}>
-            <Text style={styles.buttonText}>Valid Items</Text>
-            <View></View>
-          </View>
+          <TouchableOpacity>
+            <View style={styles.listItem}>
+              
+              <View style={styles.metaInfo}>
+                <Text style={styles.title}>{this.state.Type}</Text>
+                <Text style={styles.title}>{this.state.Weight} kg </Text>
+                <Text style={styles.title}>+ {this.state.Points} Points!</Text>
+              </View>
+            </View>
+          </TouchableOpacity>
         </ImageBackground>
       </View>
     );
@@ -54,31 +60,52 @@ const styles = StyleSheet.create({
   container: {
     flexBasis: 230,
     flexGrow: 2,
-    alignItems: "center",
-    justifyContent: "center",
+    // alignItems: "center",
+    // justifyContent: "center",
   },
   text: {
-    fontSize: 25,
+    marginTop: 50,
+    fontSize: 30,
     fontWeight: "700",
+
   },
-  buttonText: {
-    fontSize: 25,
-    fontWeight: "700",
-    color: "#fff",
+  listHeader: {
+    flex: 1,
+    justifyContent: "space-between",
+    flexDirection: "row",
+    backgroundColor: "#fff",
+    padding: 5,
+    marginVertical: 10,
+    borderRadius: 18,
   },
-  doneButton: {
-    backgroundColor: "#CACC90",
-    marginTop: 250,
-    paddingVertical: 10,
+  listItem: {
+    marginTop: 10,
+    paddingVertical: 20,
     paddingHorizontal: 10,
-    borderRadius: 25,
-    alignItems: "center",
-    justifyContent: "center",
+    backgroundColor: "#fff",
+    flexDirection: "row",
+    borderRadius: 20,
+  },
+  metaInfo: {
+    marginLeft: 10,
+    justifyContent: "center", //Centered vertically
+    alignItems: "center", // Centered horizontally
+  },
+  title: {
+    fontSize: 25,
+    width: 200,
+    padding: 10,
+    fontWeight: "bold",
     textAlign: "center",
+  },
+  coverImage: {
+    width: 100,
+    height: 100,
+    borderRadius: 8,
   },
   image: {
     alignItems: "center",
-    justifyContent: "center",
+    // justifyContent: "center",
     width: "100%",
     height: "100%",
   },

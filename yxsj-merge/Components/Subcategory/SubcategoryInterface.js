@@ -11,6 +11,7 @@ import {
 class SubcategoryInterface extends React.Component {
     constructor(props){
         super(props);
+        if (this.props.route.params)
         this.subcategory =this.props.route.params.category;
         //this should really be another field in the json file called categoryURI
         this.subcategoryImageURI = this.props.route.params.picture;

@@ -37,7 +37,9 @@ class TensorJS  {
 
   classifyImage = async (image) => {
     try {
+      console.log("decoding into base64")
       const imageTensor = this.imageToTensor(base64Arraybuffer.decode(image.base64))
+      console.log("classifying")
       const predictions = await this.model.classify(imageTensor)
       this.state.predictions = predictions
       console.log(predictions)
@@ -47,28 +49,48 @@ class TensorJS  {
   }
       
       
-  async init() {
-    console.log("this is before undefined")
+  init() {
+    console.log("running initialisation of tf model")
     try{
-      await tf.setBackend('cpu');
-      await tf.ready()
-      // this.setState({
-      //   isTfReady: true
-      // })
-      this.state = Object.assign({}, this.state, {isTfReady: true})
-      console.log('hi', this.state.isTfReady)
-      this.model = await mobilenet.load()
-      // this.setState({isModelReady:true})
-      this.state = Object.assign({}, this.state, {isModelReady: true})
+      tf.setBackend('cpu')
+      .then(()=>{
+        tf.ready()
+        .then(()=>{
+          this.state = Object.assign({}, this.state, {isTfReady: true})
+          console.log('hi', this.state.isTfReady)
+          mobilenet.load()
+          .then((res)=> {
+            this.model = res
+            this.state = Object.assign({}, this.state, {isModelReady: true})
+            console.log("model is ready!")
+          })
+        })
+      })
+      // await tf.ready()
       
-      
-      //Output in Expo console
-      console.log(this.state.isTfReady)
     } catch (error) {
       console.log(error)
     }
   }
+  // async init() {
+  //   console.log("running initialisation of tf model")
+  //   try{
+  //     await tf.setBackend('cpu');
+  //     await tf.ready()
+  //     this.state = Object.assign({}, this.state, {isTfReady: true})
+  //     console.log('hi', this.state.isTfReady)
+  //     this.model = await mobilenet.load()
+  //     this.state = Object.assign({}, this.state, {isModelReady: true})
+      
+  //     console.log("model is ready!")
+  //   } catch (error) {
+  //     console.log(error)
+  //   }
+  // }
 }
+
+TensorJS.shared = new TensorJS()
+TensorJS.shared.init()
 
 const styles = StyleSheet.create({
   container: {

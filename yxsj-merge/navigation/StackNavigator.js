@@ -10,7 +10,6 @@ import Settings_Keyin from "../Pages/Settings_Keyin";
 import Education from "../Pages/Education";
 import Deposit from "../Pages/Deposit";
 import DepositResults from "../Pages/DepositResults";
-import Search from "../Pages/Search";
 import Plastic from "../Pages/Plastic";
 import Paper from "../Pages/Paper";
 import Metal from "../Pages/Metal";
