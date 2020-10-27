@@ -34,7 +34,7 @@ class SearchByText extends React.Component{
       this.setState({
         fullData: doc,
         data: doc,
-      })
+      }, () => console.log(this.state.fullData))
     });
     this.setState({
       isLoading: false,

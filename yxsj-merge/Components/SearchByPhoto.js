@@ -88,7 +88,7 @@ class SearchByPhoto extends React.Component{
         category: closestResult.category,
         picture: closestResult.picture,
       })
-      this.props.navigation.navigate("Subcategory", {category: this.state.category, picture: this.state.picture})
+      this.props.navigation.navigate("SubcategoryInterface", {category: this.state.category, picture: this.state.picture})
     } else {
       console.log("object could not be found in database")
       Alert.alert(

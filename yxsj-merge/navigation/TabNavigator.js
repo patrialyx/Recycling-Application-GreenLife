@@ -1,14 +1,10 @@
-import { StatusBar } from 'expo-status-bar';
+
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
-import Home from '../Pages/HomeScreen'       
-import Deposit from '../Pages/Deposit'
-import Education from '../Pages/Education'
-import Settings from '../Pages/Settings'
 
 import {HomeScreenStackNavigator, LocationStackNavigator, ScanStackNavigator, EducationStackNavigator, SettingsStackNavigator} from './StackNavigator'
 

@@ -18,6 +18,14 @@ import DepositResults from "../Pages/DepositResults";
 // import Ewaste from "../Pages/Ewaste";
 import SubcategoryDetails from "../Pages/SubcategoryDetails";
 
+import Deposit from "../Components/DepositRecyclables/Deposit";
+import DepositResults from "../Components/DepositRecyclables/DepositResults";
+// import Plastic from "../Pages/Plastic";
+// import Paper from "../Pages/Paper";
+// import Metal from "../Pages/Metal";
+// import Glass from "../Pages/Glass";
+// import Nonrecyclables from "../Pages/Nonrecyclables";
+// import Ewaste from "../Pages/Ewaste";
 import Map from "../Pages/Map";
 import Home from "../Pages/Home";
 import Points from "../Pages/Points";
