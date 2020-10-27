@@ -21,6 +21,8 @@ import Home from "../Pages/Home";
 import Points from "../Pages/Points";
 import {SearchStackNavigator} from './SearchStackNavigator'
 
+import About from "../Pages/About"
+
 const Stack = createStackNavigator();
 // lacking search cuz firebase stuff 
 
@@ -72,6 +74,7 @@ const SettingsStackNavigator = () => {
       <Stack.Screen name= "Settings" component={Settings} />
       <Stack.Screen name = "Settings_QR" component={Settings_QR} />
       <Stack.Screen name= "Settings_Keyin" component={Settings_Keyin} />
+      <Stack.Screen name= "About" component={About} />
     </Stack.Navigator>
   );
 }

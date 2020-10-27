@@ -1,64 +1,95 @@
-import { StatusBar} from 'expo-status-bar';
-import React, { useState, useEffect } from 'react';
+import { StatusBar } from 'expo-status-bar';
+import React ,{ Component,useState,useEffect } from 'react';
 import { StyleSheet, Text, View, Button, Image, TouchableOpacity} from 'react-native';
-import Donut from '../ProgressBar/progress_chart.js';
-import Fire from '../Backend/Fire.js';
+import Donut from '../ProgressBar/progress_chart.js'
+import Fire from '../Backend/Fire.js'
 
-export default function Home(props) {
-  
-  const [value, setValue] = useState(1);
-  useEffect(() => {
-    async function updateValue(){
-      const number = await Fire.shared.getTotalPoints();
-      // console.log('number is ',number)
-      setValue(number);
+
+class Home extends Component {
+ 
+
+  constructor(props) {
+    
+    super(props);
+    
+    this.state = {
+      total_points: 0,
+      hist: [],
+      percent: 0,
+      level: 0,
+      next_level: 0,
+      isLoading: false,
+      error: null
     }
-    updateValue();
-  }, []);
-  const total_points = value
-  const percent = Math.floor((total_points%1000)/10)
-  const level = Math.floor(total_points/1000)+1
-  const next_level = Math.floor(1000-(total_points%1000))
-  return (
-    <View style={styles.screen}>
-      {/* header */}
-      <TouchableOpacity style = {styles.header} onPress={()=> console.log("header pressed")}> 
-      <Text style={{fontSize:30}}>gREenlife</Text>
-      </TouchableOpacity>
-      {/* funfact */}
-      <TouchableOpacity style = {styles.funfact} onPress={()=> console.log("fun fact pressed")}>
-        <Text style={{fontSize:30,fontWeight: 'bold',paddingTop:10}}>Fun Fact</Text> 
-          <View style={{flexDirection: 'row', justifyContent: 'space-evenly',flex : 1, alignItems: 'center'}}>
-            <Image 
-            source={require('../assets/recycle.png')} 
-            style={{ width: 100, height: 100, resizeMode: 'contain',flex: 1}}
+    const lol = this.state.total_points;
+  }
+
+  async loadAsyncData() {
+    
+    this.setState({isLoading: true, error: null});
+    
+    try {
+      console.log("This is running");
+      const resp = await Fire.shared.getTotalPoints();
+      const hist_resp = await Fire.shared.getPointHistory();
+      const percent = Math.floor((resp%1000)/10);
+      const level = Math.floor(resp/1000)+1;
+      const next_level = Math.floor(1000-(resp%1000));
+      this.setState({isLoading: false, total_points: resp,hist: hist_resp, percent: percent, level: level, next_level: next_level});
+    } catch(e) {
+      this.setState({isLoading: false, error: e});
+    }
+    
+  }
+  
+  componentDidMount() {
+    
+    this.loadAsyncData();
+    
+  }
+  render(){
+    return (
+      <View style={styles.screen}>
+        {/* header */}
+        <TouchableOpacity style = {styles.header} onPress={()=> console.log(this.state.total_points)}> 
+        <Text style={{fontSize:30}}>gREenlife</Text>
+        </TouchableOpacity>
+        {/* funfact */}
+        <TouchableOpacity style = {styles.funfact} onPress={()=> console.log("fun fact pressed")}>
+          <Text style={{fontSize:30,fontWeight: 'bold',paddingTop:10}}>Fun Fact</Text> 
+            <View style={{flexDirection: 'row', justifyContent: 'space-evenly',flex : 1, alignItems: 'center'}}>
+              <Image 
+              source={require('../assets/recycle.png')} 
+              style={{ width: 100, height: 100, resizeMode: 'contain',flex: 1}}
+              />
+              <Text style={{fontSize:15,flex: 2}}>
+              In 2019, about 7.23 million tonnes of solid waste was generated, of which 4.25 million tonnes were recycled
+              </Text> 
+            </View>
+        </TouchableOpacity>
+        {/* search container */}
+        <TouchableOpacity style = {styles.search} onPress={()=> console.log("search pressed")}>
+          <Image 
+            source={require('../assets/loupe.png')} 
+            style={{ width: 50, height: 50, resizeMode: 'contain',flex: 1}}
             />
-            <Text style={{fontSize:15,flex: 2}}>
-            In 2019, about 7.23 million tonnes of solid waste was generated, of which 4.25 million tonnes were recycled
-            </Text> 
+          <Text style={{fontSize:30,flex:2,fontWeight: 'bold'}}>Search</Text> 
+        </TouchableOpacity>
+        {/* progress container */}
+        <TouchableOpacity style = {styles.progress} onPress={()=>this.props.navigation.navigate('Points',{total_points:this.state.total_points,percent:this.state.percent,hist: this.state.hist})}>
+          <Text style={{fontSize:30,fontWeight: 'bold',paddingTop:10}}>My Progress</Text> 
+          <Text style={{fontSize:20}}>Level {this.state.level}</Text> 
+          
+          <View style={{flexDirection: 'row', justifyContent: 'space-evenly', flexWrap: 'wrap', alignItems: 'center',paddingLeft:'10%'}}>
+            <Donut percentage={this.state.percent}/>
+            <Text style={{flex:1, fontSize:20, marginLeft:50}}>{this.state.next_level} points to the next level</Text> 
           </View>
-      </TouchableOpacity>
-      {/* search container */}
-      <TouchableOpacity style = {styles.search} onPress={()=> props.navigation.navigate('Search')}>
-        <Image 
-          source={require('../assets/loupe.png')} 
-          style={{ width: 50, height: 50, resizeMode: 'contain',flex: 1}}
-          />
-        <Text style={{fontSize:30,flex:2,fontWeight: 'bold'}}>Search</Text> 
-      </TouchableOpacity>
-      {/* progress container */}
-      <TouchableOpacity style = {styles.progress} onPress={()=> this.props.navigation.navigate('Points',{total_points})}>
-        <Text style={{fontSize:30,fontWeight: 'bold',paddingTop:10}}>My Progress</Text> 
-        <Text style={{fontSize:20}}>Level {level}</Text> 
-        
-        <View style={{flexDirection: 'row', justifyContent: 'space-evenly', flexWrap: 'wrap', alignItems: 'center',paddingLeft:'10%'}}>
-          <Donut percentage={percent}/>
-          <Text style={{flex:1, fontSize:20, marginLeft:50}}>{next_level} points to the next level</Text> 
-        </View>
-      </TouchableOpacity>
-      <StatusBar style="auto" />
-    </View>
-  );
+        </TouchableOpacity>
+        <StatusBar style="auto" />
+      </View>
+    );
+  }
+ 
 }
 
 const styles = StyleSheet.create({
@@ -111,3 +142,5 @@ const styles = StyleSheet.create({
     borderColor:'#fff',
   },
 });
+
+export default Home;

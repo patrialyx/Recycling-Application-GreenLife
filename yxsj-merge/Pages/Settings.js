@@ -8,7 +8,7 @@ class Settings extends React.Component {
             <Button 
                 style={{marginRight: 0}} 
                 title="About Us"
-                // onPress={() => this.props.navigation.navigate("")} 
+                onPress={() => this.props.navigation.navigate("About")} 
             />
             <Button 
                 style={{marginLeft: 0}} 

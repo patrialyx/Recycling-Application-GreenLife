@@ -1,36 +1,36 @@
 import { StatusBar } from 'expo-status-bar';
-import React ,{ useState,useEffect } from 'react';
+import React ,{ Component,useState,useEffect } from 'react';
 import { StyleSheet, Text, View, Button, Image, TouchableOpacity } from 'react-native';
 import ProgressBar from '../ProgressBar/progress_bar.js';
-import Fire from '../Backend/Fire.js'
 
-export default function Points(props) {
-  const [hist, setHist] = useState(1);
-  useEffect(() => {
-    async function updateHist(){
-      const hist = await Fire.shared.getPointHistory()
-      // console.log('number is ',number)
-      setHist(hist);
-    }
-    updateHist();
-  }, []);
-  const total_points = props.route.params.total_points;
-  const percent = Math.floor((total_points%1000)/10)
-  const point_hist = [["Plastic",500],["Paper",500],["Metal",500]]
-  return (
+
+class Points extends Component {
+  constructor(props) {
+    super(props);
+    
+    this.state = {
+      total_points: props.route.params.total_points,
+      percent: props.route.params.percent,
+      hist: props.route.params.hist
+    } 
+  }
+  render(){
+    return (
     <View style={styles.screen}>
       <Text style={{fontSize:30}}>Points History</Text> 
-      <ProgressBar value={percent}/>
-      <Text style={{fontSize:20,paddingTop:10}}>{total_points} Points</Text> 
-      {point_hist.map((point_value)=>
+      <ProgressBar value={this.state.percent}/>
+      <Text style={{fontSize:20,paddingTop:10}}>{this.state.total_points} Points</Text> 
+      {this.state.hist.map((point_value)=>
       <View style={styles.point_box}>
-         <Text style={{fontSize:30,fontWeight: 'bold'}}>{point_value[0]} </Text>
-        <Text style={{fontSize:20,fontWeight: 'bold'}}>{point_value[1]} Points</Text>
+         <Text style={{fontSize:30,fontWeight: 'bold'}}>{point_value['type']} </Text>
+        <Text style={{fontSize:20,fontWeight: 'bold'}}>{point_value['points']} Points</Text>
       </View>
       )}
       <StatusBar style="auto" />
     </View>
-  );
+    );
+  }
+  
 }
 
 const styles = StyleSheet.create({
@@ -55,3 +55,4 @@ const styles = StyleSheet.create({
     
   },
 });
+export default Points;
