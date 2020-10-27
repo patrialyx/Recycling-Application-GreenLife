@@ -160,31 +160,43 @@ class Fire {
 
 
   // ============ brent ============
-  getTotalPoints = () => {
-    console.log('in get toal points')
-    this.db.doc(`users/${this.user.uid}`).get().then((doc) => {
+  getTotalPoints = async () => {
+    try {
+      console.log('in get toal points')
+      const doc = await this.db.doc(`users/${this.user.uid}`).get()
       if (doc && doc.exists) {
         const data = doc.data()
+        console.log('worked', data.total_points)
         return data.total_points
+      } else {
+        console.log("didnt work")
       }
-    }).catch((e) => {
-      console.log(e.message)
-    })
+
+    } catch (e) {
+      console.log('error: ', e.message)
+    }
+    return 2
   }
 
-  getPointHistory = () => {
-    console.log('in get history')
-    this.db.doc(`users/${this.user.uid}`).get().then((doc) => {
+  getPointHistory = async () => {
+    
+    try {
+      console.log('in get hist')
+      const doc = await this.db.doc(`users/${this.user.uid}`).get()
       if (doc && doc.exists) {
         const data = doc.data()
+        console.log('hist worked', data.history)
         return data.history
+      } else {
+        console.log("didnt work")
       }
-    }).catch((e) => {
-      console.log(e.message)
-    })
+
+    } catch (e) {
+      console.log('error: ', e.message)
+    }
+    return 2
   }
-
-
+ 
 
   // ============== yuxuan ==================
   reportFault = async (bin_uid, description) => {
