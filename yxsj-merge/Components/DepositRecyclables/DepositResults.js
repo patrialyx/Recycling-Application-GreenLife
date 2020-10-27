@@ -20,7 +20,7 @@ class DepositResults extends React.Component {
     this.state = {
       // This is our Default number value
       Type: randomSubcategory,
-      Weight: Math.round(Math.random(), 2), //round off to 2 dp
+      Weight: Math.round(Math.random()*100, 2)/100, //round off to 2 dp
       Points: RandomNumber,
     };
     Fire.shared.submitItem(this.state.Type,this.state.Weight, this.state.Points);

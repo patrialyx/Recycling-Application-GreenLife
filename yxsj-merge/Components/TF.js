@@ -5,6 +5,8 @@ import * as tf from '@tensorflow/tfjs';
 import { fetch } from '@tensorflow/tfjs-react-native';
 import * as mobilenet from '@tensorflow-models/mobilenet'
 import * as jpeg from 'jpeg-js'
+
+
 var base64Arraybuffer = require("base64-arraybuffer")
 
 
