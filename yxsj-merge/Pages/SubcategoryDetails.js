@@ -126,7 +126,7 @@ class SubcategoryDetails extends Component {
 
   renderTitle = () => {
     switch (this.props.route.params.type) {
-      case "Platic":
+      case "Plastic":
         return (
           <View style={{ flex: 1,justifyContent: "flex-end", alignItems: "center" }} >
             <Text style={{ backgroundColor: "transparent", fontSize:50, color:"white" }}>Plastic</Text>

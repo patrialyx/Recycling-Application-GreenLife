@@ -2,7 +2,7 @@ import React from "react";
 import "react-native-gesture-handler";
 import { createStackNavigator } from "@react-navigation/stack";
 
-import HomeScreen from "../Pages/HomeScreen";
+// import HomeScreen from "../Pages/HomeScreen";
 import QRScanner from "../Pages/QRScanner";
 import Settings_QR from "../Pages/Settings_QR";
 import Settings from "../Pages/Settings";
