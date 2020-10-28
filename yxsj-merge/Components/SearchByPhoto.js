@@ -72,6 +72,8 @@ class SearchByPhoto extends React.Component{
         });
         this.navigateToSubcategory(classificationResult)
         console.log("Done classifying!")
+      } else {
+        return;
       }
     } catch (error){
       console.log(error)
