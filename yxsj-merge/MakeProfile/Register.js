@@ -43,8 +43,13 @@ class Register extends React.Component {
   };
 
   handleRegister = async (email, password, name ) => {
-    this.setState(initialState)
+    if (this.state.name.length === 0) {
+      alert("Please input display name") 
+      return;
+    }
+    
     const success = await Fire.shared.handleRegister(email, password, name)
+    this.setState(initialState)
     if (success) {
       this.props.navigation.navigate("Profile")
     }

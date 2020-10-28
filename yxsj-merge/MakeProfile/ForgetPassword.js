@@ -28,8 +28,8 @@ class ForgetPassword extends React.Component {
 
 
   handleForgetPassword = async (email) => {
-    this.setState(initialState)
     const success = await Fire.shared.handlePasswordReset(email)
+    this.setState(initialState)
     if (success) {
       this.props.navigation.navigate('Login')
     }
