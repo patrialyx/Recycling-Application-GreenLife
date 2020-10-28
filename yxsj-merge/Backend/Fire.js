@@ -221,7 +221,7 @@ class Fire {
       console.log('faulty bin', faultyBin)
       report = {
         user: this.user.email,
-        bin: faultyBin, 
+        bin: faultyBin,
         description
       }
     } catch (e) {

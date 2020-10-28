@@ -16,9 +16,16 @@ export default function Settings_QR() {
   }, []);
 
   const handleBarCodeScanned = ({ type, data }) => {
-    setBinUid(data)
-    setScanned(true);
-    alert(`Recycling Bin ${data} has been scanned!`);
+    if (isNaN(parseInt(data))){
+      alert("QR code is invalid");
+      return;
+    }
+    else{
+      setBinUid(data)
+      setScanned(true);
+      alert(`Recycling Bin ${data} has been scanned!`);
+    }
+    
   };
 
   

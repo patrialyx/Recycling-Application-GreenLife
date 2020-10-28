@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, Text, StyleSheet, ScrollView, TextInput, titleChangeHandler, Button } from "react-native";
+import { View, Text, StyleSheet, ScrollView, TextInput, titleChangeHandler, Button, Alert } from "react-native";
 import Fire from '../Backend/Fire';
 
 const initialState = {
@@ -18,6 +18,11 @@ class Settings_Keyin extends Component {
 
   handleSubmit = () => {
     //receives variable from settings_qr
+
+   if (this.state.description.length === 0) {
+     alert("Description is empty. Please describe the bin fault.")
+     return
+   } 
     Fire.shared.reportFault(this.props.route.params.bin_uid, this.state.description)
     this.props.navigation.navigate("Settings")
     this.setState(initialState)

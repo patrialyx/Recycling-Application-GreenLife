@@ -35,7 +35,7 @@ function MyTabs() {
         options={{
           tabBarLabel: 'Location',
           tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="home" color={color} size={size} />
+            <MaterialCommunityIcons name="map" color={color} size={size} />
           ),
         }}
       />
