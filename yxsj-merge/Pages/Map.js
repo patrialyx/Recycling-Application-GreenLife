@@ -29,8 +29,8 @@ export default class Map extends React.Component {
   }
 
   type = {
-    "e-waste": 1,
-    others: 2
+    "e-waste": "E-waste",
+    others: "Paper, Plastic, Metal, Glass"
   }
 
 
@@ -180,7 +180,7 @@ export default class Map extends React.Component {
                 this.state.initialRegion.latitude,
                 this.state.initialRegion.longitude,
                 this.state.destination.latitude,
-                this.state.destination.longitude)}
+                this.state.destination.longitude)}m
             </Text>
             <Text style={styles.distance}>
               Category: {this.state.category}
@@ -217,7 +217,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row'
   },
   distance: {
-    fontSize: 20,
+    fontSize: 16,
     padding: 10,
   },
 });
