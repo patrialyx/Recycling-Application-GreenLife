@@ -66,7 +66,7 @@ class ForgetPassword extends React.Component {
             backgroundColor: 'transparent',
             justifyContent: 'center',
           }}>
-          <KeyboardAwareScrollView>
+          {/* <KeyboardAwareScrollView> */}
             <View style={{ justifyContent: 'center', alignItems: 'center' }}>
               <Image
                 source={require('../assets/greenlife.png')}
@@ -102,7 +102,7 @@ class ForgetPassword extends React.Component {
                 <Text style={styles.buttonText}> Back </Text>
               </TouchableOpacity>
             </View>
-          </KeyboardAwareScrollView>
+          {/* </KeyboardAwareScrollView> */}
         </View>
       </View>
     );

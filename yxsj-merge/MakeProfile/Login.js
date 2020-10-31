@@ -97,7 +97,7 @@ class Login extends React.Component {
             backgroundColor: 'transparent',
             justifyContent: 'center',
           }}>
-          <KeyboardAwareScrollView>
+          {/* <KeyboardAwareScrollView> */}
             <View style={{ justifyContent: 'center', alignItems: 'center' }}>
               <Image
                 source={require('../assets/greenlife.png')}
@@ -147,7 +147,7 @@ class Login extends React.Component {
                 <Text style={styles.buttonText}> Forget Password </Text>
               </TouchableOpacity>
             </View>
-          </KeyboardAwareScrollView>
+          {/* </KeyboardAwareScrollView> */}
         </View>
       </View>
     );
