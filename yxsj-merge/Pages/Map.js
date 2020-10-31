@@ -2,6 +2,7 @@ import React from 'react';
 
 import MapView, { AnimatedRegion, Marker } from "react-native-maps";
 import MapViewDirections from "react-native-maps-directions";
+import Loader from '../Components/Loader';
 
 import {
   StyleSheet,
@@ -11,7 +12,7 @@ import {
   TouchableWithoutFeedback,
   Button,
 } from "react-native";
-
+import { ActivityIndicator } from "react-native";
 import Fire from "../Backend/Fire";
 
 height = Dimensions.get("window").height;
@@ -25,7 +26,8 @@ export default class Map extends React.Component {
     destination: {},
     direction: false,
     intitalRegion: {},
-    mapRegion: {}
+    mapRegion: {},
+    loading: false
   }
 
   type = {
@@ -63,6 +65,7 @@ export default class Map extends React.Component {
   }
 
   getCurrentLocation = async() => {
+
     navigator.geolocation.getCurrentPosition(
         position => {
         let region = {
@@ -92,11 +95,18 @@ export default class Map extends React.Component {
     initialRegion["longitudeDelta"] = 0.09;
     this.mapView.animateToRegion(initialRegion, 2000);
   }
-
+  
   componentDidMount(){
+    console.log("Currently in Africa...")
+    this.setState({
+      loading: true,
+    });
     this.getCurrentLocation();
-
     console.log("componentDidMount():", this.state.intitalRegion)
+    this.setState({
+      loading: false,
+    });
+    this.forceUpdate()
   }
 
 
@@ -104,6 +114,7 @@ export default class Map extends React.Component {
   render() {
     return (
       <>
+      <Loader loading={this.state.loading} />
       <MapView
           style={StyleSheet.absoluteFillObject}
           // region={this.state.mapRegion}
@@ -122,47 +133,47 @@ export default class Map extends React.Component {
       {Fire.shared.bins.map((marker) => {
         return (
           <MapView.Marker
-            key={marker.uid}
-            identifier={marker.uid.toString()}
-            coordinate={{
-              longitude: marker.coord.longitude? marker.coord.longitude : 0,
-              latitude: marker.coord.latitude? marker.coord.latitude : 0, 
-              latitudeDelta: 0.02,
-              longitudeDelta: 0.02
-            }}
-            pinColor={this.pinColor(marker.type)}
-            onPress={() => {
-                this.setState({
-                  destination: marker.coord,
-                  direction: false,
-                  card: true,
-                  category: this.type[marker.type],
-                });
-              }}
+          key={marker.uid}
+          identifier={marker.uid.toString()}
+          coordinate={{
+            longitude: marker.coord.longitude? marker.coord.longitude : 0,
+            latitude: marker.coord.latitude? marker.coord.latitude : 0, 
+            latitudeDelta: 0.02,
+            longitudeDelta: 0.02
+          }}
+          pinColor={this.pinColor(marker.type)}
+          onPress={() => {
+            this.setState({
+              destination: marker.coord,
+              direction: false,
+              card: true,
+              category: this.type[marker.type],
+            });
+          }}
           />
           )}
-      )
-      }
-
+          )
+        }
+        
 
           {((this.state.destination) && this.state.direction) ?(
             <MapViewDirections
-              // origin={{latitude: 1.3483, longitude: 103.6831,}}
-              origin={this.state.initialRegion}
-              destination={this.state.destination}
-              apikey={"AIzaSyBEIbuhr6Srcq7eGKaVYjRSpAEuGefGPQ8"}
-              strokeWidth={3}
-              strokeColor="blue"
-              mode="WALKING"
-              onReady={result => {
+            // origin={{latitude: 1.3483, longitude: 103.6831,}}
+            origin={this.state.initialRegion}
+            destination={this.state.destination}
+            apikey={"AIzaSyBEIbuhr6Srcq7eGKaVYjRSpAEuGefGPQ8"}
+            strokeWidth={3}
+            strokeColor="blue"
+            mode="WALKING"
+            onReady={result => {
                 console.log(`Distance: ${result.distance} km`)
                 console.log(`Duration: ${result.duration} min.`)
-                }}
-            />
-          ):(<View/>)}
+              }}
+              />
+              ):(<View/>)}
             
       </MapView>
-
+      
       {this.state.card ? (
         <TouchableWithoutFeedback>
           <View style={styles.card}>
