@@ -41,7 +41,7 @@ class SubcategoryInterface extends React.Component {
             </TouchableOpacity>
             {/* insert link to map */}
             <TouchableOpacity 
-              onPress={() => this.props.navigation.navigate("Map")} 
+              onPress={() => this.props.navigation.navigate("Map", {type: this.subcategory})} 
               style={styles.button}
               > 
               <Text>Find A Bin</Text>
