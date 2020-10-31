@@ -7,12 +7,13 @@ export default class Splash extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            fontLoaded: false,
+            fontLoaded: false
         };
     }
 
-
     render() {
+        const recyclingTips = ["'Just use, later then recycle lah!': Did you know that You can only recycle your plastic bottle a limited number of times before it becomes another piece of waste on our planet? ", "'Biodegradable plastics are good for the earth!': Unfortunately, we do not have the facilities to treat biodegradable plastics in Singapore, so they should be thrown away as general waste. Biodegradable plastics are incinerated and sent to the landfill, where they act like any normal plastic. "];
+        var randomElement = recyclingTips[Math.floor(Math.random() * recyclingTips.length)];
         return (
             <View style={styles.container}>
 
@@ -25,10 +26,16 @@ export default class Splash extends Component {
                     <View style={{ justifyContent: 'center', alignItems: 'center', }}>
 
                         <Image source={require('../assets/greenlife.png')} style={styles.image} />
-
-                        <Text style={{ textAlign: 'center', fontSize: 18 }} > I didn't choose the gREen life. The gREenlife chose me. 
-                        </Text>
-
+                            <View style={{margin: 15}}>
+                                <Text style={{ textAlign: 'center', fontSize: 20, fontWeight: 'bold' }} >
+                                    Busting Singaporean Recycling Myths:
+                                </Text>
+                            </View>
+                            <View style={{margin: 15}}>
+                                <Text style={{ textAlign: 'center', fontSize: 15 }} >
+                                    {randomElement}
+                                </Text>
+                            </View>
                     </View>
 
                 </View>
@@ -55,6 +62,5 @@ const styles = StyleSheet.create({
         marginBottom: 20,
         height: 200,
         width: 200,
-
     },
 });

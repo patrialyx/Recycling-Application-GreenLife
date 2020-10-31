@@ -26,6 +26,7 @@ class Settings_Keyin extends Component {
     Fire.shared.reportFault(this.props.route.params.bin_uid, this.state.description)
     this.props.navigation.navigate("Settings")
     this.setState(initialState)
+    alert("Thank you for your feedback. We will address the issue as soon as possible.")
     
   }
 

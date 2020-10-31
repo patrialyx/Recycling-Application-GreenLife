@@ -56,12 +56,11 @@ class Home extends Component {
   render(){
     return (
       <View style={styles.screen}>
+        <Image source={require('../assets/recycling.jpg')} style={styles.secondContainer} />        
         {/* header */}
-        <TouchableOpacity style = {styles.header} onPress={()=> this.props.navigation.navigate("Education")}> 
-        <Text style={{fontSize:30}}>gREenlife</Text>
-        </TouchableOpacity>
+        <Image source={require('../assets/greenlife.png')} style={styles.image} />
         {/* funfact */}
-        <TouchableOpacity style = {styles.funfact} onPress={()=> console.log("fun fact pressed")}>
+        <TouchableOpacity style = {styles.funfact} onPress={()=> this.props.navigation.navigate("Education")}>
           <Text style={{fontSize:30,fontWeight: 'bold',paddingTop:10}}>Fun Fact</Text> 
             <View style={{flexDirection: 'row', justifyContent: 'space-evenly',flex : 1, alignItems: 'center'}}>
               <Image 
@@ -102,13 +101,23 @@ class Home extends Component {
 }
 
 const styles = StyleSheet.create({
+  secondContainer: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    width: '100%',
+    height: '100%',
+  },
+  backgroundImage: {
+    flex: 1,
+    resizeMode: 'cover', // or 'stretch'
+  },
   screen: {
     flex: 1,
-    backgroundColor: '#fff',
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    padding:10,
+    padding:5,
     
   },
   header: {
@@ -122,34 +131,40 @@ const styles = StyleSheet.create({
   funfact: {
     flex: 4,
     width: '100%',
-    backgroundColor: '#add8e6',
+    backgroundColor: '#8AA989',
     flexDirection: 'column',
     alignItems: 'center',
     // paddingTop:30,
     // justifyContent: 'space-between',
     borderWidth:10,
-    borderColor:'#fff',
+    borderColor: 'transparent'
+
   },
   search: {
     flex: 2,
     width: '100%',
-    backgroundColor: '#8ED081',
+    backgroundColor: '#C0CEB2',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
     borderWidth:10,
-    borderColor:'#fff',
+    borderColor: 'transparent'
   },
   progress: {
     flex: 3,
     width: '100%',
-    backgroundColor: '#FFE2D1',
+    backgroundColor: '#CACC90',
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
     borderWidth:10,
-    borderColor:'#fff',
+    borderColor: 'transparent'
   },
+  image: {
+    marginBottom: 20,
+    height: 200,
+    width: 200,
+}
 });
 
 export default Home;
