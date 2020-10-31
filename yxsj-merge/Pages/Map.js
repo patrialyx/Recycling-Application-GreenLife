@@ -301,7 +301,7 @@ export default class Map extends React.Component {
           <Button
             buttonStyle={styles.filterButton}
             onPress={()=>this.setState({filterCard: true})}
-            title="filters"
+            title="Filter Bin Categories"
           /> 
 
         </TouchableWithoutFeedback>

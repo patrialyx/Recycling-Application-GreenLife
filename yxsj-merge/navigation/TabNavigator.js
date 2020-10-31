@@ -19,10 +19,10 @@ function MyTabs() {
       }}
     >
       <Tab.Screen
-        name="HomeScreen"
+        name="Home"
         component={HomeScreenStackNavigator}
         options={{
-          tabBarLabel: 'HomeScreen',
+          tabBarLabel: 'Home',
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons name="home" color={color} size={size} />
           ),
@@ -30,27 +30,27 @@ function MyTabs() {
       />
       
       <Tab.Screen
-        name="Location"
+        name="Maps"
         component={LocationStackNavigator}
         options={{
-          tabBarLabel: 'Location',
+          tabBarLabel: 'Locate Bin',
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons name="map" color={color} size={size} />
           ),
         }}
       />
       <Tab.Screen
-        name="Scan"
+        name="Scan QR Code to deposit item in Recycling Bin"
         component={ScanStackNavigator}
         options={{
-          tabBarLabel: 'Scan',
+          tabBarLabel: 'Recycle',
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons name="qrcode" color={color} size={size} />
           ),
         }}
       />
       <Tab.Screen
-        name="Education"
+        name="Recycling Bites"
         component={EducationStackNavigator}
         options={{
           tabBarLabel: 'Education',

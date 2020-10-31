@@ -1,7 +1,8 @@
 import React from "react";
-import { StyleSheet, Text, View, ImageBackground, TouchableOpacity } from "react-native";
+import { StyleSheet, View, ImageBackground, ScrollView, Image, TouchableOpacity } from "react-native";
 import Fire from '../Backend/Fire'
 import Loader from '../Components/Loader';
+import { Card, Button, Icon, Text } from 'react-native-elements';
 
 
 class Settings extends React.Component {
@@ -23,7 +24,55 @@ class Settings extends React.Component {
         >
           {/* <View style={styles.container}> */}
             <Loader loading={this.state.loading} />
+
+      <ScrollView 
+          style={{width:'100%', height: '100%'}}
+          contentContainerStyle={{
+            justifyContent: 'space-between'
+        }}>
+        <View style={{flex: 1, flexDirection: 'column'}}>
+            <Card
+              title="About Us"
+              image={require('../assets/about.jpg')}
+              containerStyle={{ marginBottom: 5 }}>
+              <Text style={{ marginBottom: 10 }}>Find out more about the REngineer Team and their passion for the environment.</Text>
+              <Button
+                buttonStyle={{
+                  borderRadius: 10,
+                  marginLeft: 10,
+                  marginRight: 10,
+                  marginBottom: 0,
+                  backgroundColor: '#CACC90'
+                }}
+                onPress={() => this.props.navigation.navigate("About")}
+                title="About Us"
+              />
+            </Card>
+            <Card
+              title="Report Fault" 
+              image={require('../assets/recycling.jpg')}
+              containerStyle={{ marginBottom: 5 }}>
+              <Text style={{ marginBottom: 10 }}>Faulty bins? Tell us more information about the bins and we will fix them as soon as possible.</Text>
+              <Button
+                title="Report Fault"
+                buttonStyle={{
+                  borderRadius: 10,
+                  marginLeft: 10,
+                  marginRight: 10,
+                  marginBottom: 0,
+                  backgroundColor: '#CACC90'
+                }}
+                onPress={() => this.props.navigation.navigate("Settings_QR")}
+              />
+            </Card>
             <TouchableOpacity
+              style={styles.buttonContainer2}
+              onPress={()=> this.handleLogout()}>
+              <Text style={styles.buttonText}> Logout </Text>
+            </TouchableOpacity>
+        </View>
+        </ScrollView>
+            {/* <TouchableOpacity
               style={styles.buttonContainer2}
               onPress={()=> this.props.navigation.navigate("About")}>
               <Text style={styles.buttonText}> About </Text>
@@ -32,12 +81,8 @@ class Settings extends React.Component {
               style={styles.buttonContainer2}
               onPress={()=> this.props.navigation.navigate("Settings_QR")}>
               <Text style={styles.buttonText}> Report Bin Fault </Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.buttonContainer2}
-              onPress={()=> this.handleLogout()}>
-              <Text style={styles.buttonText}> Logout </Text>
-            </TouchableOpacity>
+            </TouchableOpacity> */}
+            
           {/* </View> */}
         </ImageBackground> 
             
@@ -77,27 +122,29 @@ class Settings extends React.Component {
 }
 
 const styles = StyleSheet.create({
+  secondContainer: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    width: '110%',
+    height: '110%',
+  },
+  screen: {
+    flex: 1,
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding:15,
+  },
   buttonContainer2: {
-    backgroundColor: '#75704E',
+    backgroundColor: '#CACC90',
     paddingVertical: 10,
     marginTop: 20,
     height: 50,
     borderRadius: 5,
     margin: 24
-  },
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    margin: 0,
-    padding: 36,
-    justifyContent: 'center',
-  },
-  
-  buttonText: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    color: '#FFFFFF',
   },
   image: {
     flexBasis: 230,
@@ -107,6 +154,12 @@ const styles = StyleSheet.create({
     width: "100%",
     height: "100%",
   },
-})
+  buttonText: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    color: '#FFFFFF',
+  }
+});
 
 export default Settings;

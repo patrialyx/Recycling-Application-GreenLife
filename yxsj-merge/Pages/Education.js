@@ -1,11 +1,10 @@
 import React, { Component } from "react";
 import {
     View,
-    Text,
     StyleSheet,
     SafeAreaView,
     ScrollView,
-    Image, Button,
+    Image,
     Dimensions, Linking,
     TouchableOpacity
 } from "react-native";
@@ -13,6 +12,7 @@ import {
 import Category from '../Category'
 import SubcategoryCard from '../Components/SubcategoryCard'
 const { height, width } = Dimensions.get('window')
+import { Card, Button, Text } from 'react-native-elements';
 
 class Education extends Component {
 
@@ -40,12 +40,25 @@ class Education extends Component {
                             style={{ fontSize: 24, fontWeight: '700', paddingHorizontal: 20 }}>
                                 News 
                             </Text>
-                            <Image 
-                                source={require('../assets/latestnews.png')} 
-                                style={{ width: "100%", height: 100, resizeMode: 'contain',flex: 1}}
-                                />
+                            <Card
+              title="Current Recycling Affairs" 
+              image={require('../assets/infocute.png')}
+              containerStyle={{ marginBottom: 5 }}>
+              <Text style={{ marginBottom: 10 }}>Be updated of the latest recycling news!</Text>
+              <Button
+                title="Find out more"
+                buttonStyle={{
+                  borderRadius: 10,
+                  marginLeft: 10,
+                  marginRight: 10,
+                  marginBottom: 0,
+                  backgroundColor: '#CACC90'
+                }}
+                onPress={() => Linking.openURL('https://www.straitstimes.com/tags/recycling')}
+              />
+            </Card>
     
-                            <View style={{
+                            {/* <View style={{
                                 backgroundColor: '#fff',
                                 justifyContent: 'center', 
                                 alignItems:'center',
@@ -55,7 +68,7 @@ class Education extends Component {
                                            
                                 <Text style={{color:'#000000', textAlign: 'center', fontWeight: 'bold' }}>CLICK HERE TO CHECK OUT THE MOST RECENT RECYCLING NEWS</Text>
                             </TouchableOpacity>
-                            </View>
+                            </View> */}
                             <Text
                             style={{ fontSize: 24, fontWeight: '700', paddingHorizontal: 20 }}>
                                 Recycling Tips
