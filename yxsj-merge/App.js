@@ -2,7 +2,7 @@ import React from 'react'
 import Splash from './Pages/Splash';
 import Login from './MakeProfile/Login';
 
-import SwitchNavigator from './navigation/SwitchNavigator'
+import {MainLoginNavigator} from './navigation/StackNavigator'
 
 export default class App extends React.Component {
 
@@ -23,13 +23,9 @@ export default class App extends React.Component {
 
       return mainScreen
 
-    } else {
-
-      mainScreen = <Login />
-
-    }
+    } 
     return (
-				<SwitchNavigator />
+				<MainLoginNavigator />
 		)
   }
 }

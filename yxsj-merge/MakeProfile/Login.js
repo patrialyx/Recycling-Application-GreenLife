@@ -23,11 +23,11 @@ const initialState = {
 class Login extends React.Component {
   state = initialState;
 
-  componentDidMount = () => {
-    if (Fire.shared.user) {
-      this.props.navigation.navigate('Profile');
-    }
-  };
+  // componentDidMount = () => {
+  //   if (Fire.shared.user) {
+  //     this.props.navigation.navigate('TabNavigator');
+  //   }
+  // };
 
   onEmailChange = (email) => {
     this.setState({
@@ -56,7 +56,7 @@ class Login extends React.Component {
       this.setState({
         loading: false,
       });
-      this.props.navigation.navigate('TabNavigator');
+      // this.props.navigation.navigate('TabNavigator');
     }
   }
 
