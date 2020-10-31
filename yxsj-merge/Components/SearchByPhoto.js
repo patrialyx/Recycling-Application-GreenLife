@@ -60,7 +60,7 @@ class SearchByPhoto extends React.Component{
       pickedImage: image.uri
     })
     console.log("pickedImage is now", this.state.pickedImage)
-
+    // TensorJS.shared.state.isTfReady = false;
     TensorJS.shared.state.image = image;
     try {
       if (TensorJS.shared.state.isTfReady && TensorJS.shared.state.isModelReady){
@@ -70,9 +70,14 @@ class SearchByPhoto extends React.Component{
         this.setState({
           loading: false
         });
+        // throw new Error("this is a whitebox test case");
         this.navigateToSubcategory(classificationResult)
         console.log("Done classifying!")
       } else {
+        console.log("Model was not ready")
+        this.setState({
+          loading: false
+        });
         return;
       }
     } catch (error){
