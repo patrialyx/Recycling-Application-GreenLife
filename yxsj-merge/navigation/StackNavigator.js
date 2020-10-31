@@ -1,6 +1,7 @@
 import React from "react";
 import "react-native-gesture-handler";
 import { createStackNavigator } from "@react-navigation/stack";
+import { NavigationContainer } from '@react-navigation/native';
 
 // import HomeScreen from "../Pages/HomeScreen";
 import QRScanner from "../Pages/QRScanner";
@@ -32,6 +33,14 @@ import Points from "../Pages/Points";
 import {SearchStackNavigator} from './SearchStackNavigator'
 
 import About from "../Pages/About"
+import Login from "../MakeProfile/Login";
+import Register from "../MakeProfile/Register";
+import ForgetPassword from "../MakeProfile/ForgetPassword";
+import Fire from "../Backend/Fire";
+import TabNavigator from "./TabNavigator";
+import { getFocusedRouteNameFromRoute } from '@react-navigation/native';
+
+
 
 const Stack = createStackNavigator();
 // lacking search cuz firebase stuff 
@@ -90,4 +99,41 @@ const SettingsStackNavigator = () => {
   );
 }
 
-export {HomeScreenStackNavigator, LocationStackNavigator, ScanStackNavigator, EducationStackNavigator, SettingsStackNavigator};
+const LoginStackNavigator = () => {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name= "Login" component={Login} />
+      <Stack.Screen name = "Register" component={Register} />
+      <Stack.Screen name= "ForgetPassword" component={ForgetPassword} />
+    </Stack.Navigator>
+  );
+  }
+  
+
+const getHeaderTitle = (route) => {
+    return getFocusedRouteNameFromRoute(route) ?? 'HomeScreen'
+  }
+
+const MainLoginNavigator = () => {
+  return (
+    
+    <NavigationContainer>
+    <Stack.Navigator>
+    
+      {
+        Fire.shared.user 
+        ?
+        (
+          <Stack.Screen name= "TabNavigator" component={TabNavigator} options={({ route})=> ({ headerTitle: getHeaderTitle(route)})} />
+          ) : (
+            <Stack.Screen name = "Login" component={LoginStackNavigator} />
+            )
+          }
+      <Stack.Screen name= "ForgetPassword" component={ForgetPassword} />
+    </Stack.Navigator>
+    </NavigationContainer>
+  );
+  
+}
+
+export {HomeScreenStackNavigator, LocationStackNavigator, ScanStackNavigator, EducationStackNavigator, SettingsStackNavigator, LoginStackNavigator, MainLoginNavigator};

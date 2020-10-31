@@ -73,10 +73,12 @@ function MyTabs() {
   );
 }
 
-export default function App() {
-  return (
-    <NavigationContainer>
-      <MyTabs />
-    </NavigationContainer>
-  );
-}
+// export default function App() {
+//   return (
+//     <NavigationContainer>
+//       <MyTabs />
+//     </NavigationContainer>
+//   );
+// }
+
+export default MyTabs;
