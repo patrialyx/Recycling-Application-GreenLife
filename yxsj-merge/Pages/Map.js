@@ -9,25 +9,36 @@ import {
   Dimensions,
   View,
   Text,
-  TouchableWithoutFeedback,
-  Button,
+  TouchableWithoutFeedback
+  
 } from "react-native";
+import { Icon, CheckBox, Button } from "react-native-elements"
 import { ActivityIndicator } from "react-native";
 import Fire from "../Backend/Fire";
 
 height = Dimensions.get("window").height;
 width = Dimensions.get("window").width;
 
+
+
 export default class Map extends React.Component {
 
   state = {
+    filterCard: false,
     card: false,
     category: 0,
     destination: {},
     direction: false,
     intitalRegion: {},
     mapRegion: {},
-    loading: false
+    loading: false,
+    filters: {
+      ewaste: true,
+      metal: true, 
+      glass: true, 
+      plastic: true, 
+      paper: true
+    }
   }
 
   type = {
@@ -35,6 +46,21 @@ export default class Map extends React.Component {
     others: "Paper, Plastic, Metal, Glass"
   }
 
+  filterBins = (bin) => {
+    if (bin.type == "e-waste") {
+      if (this.state.filters.ewaste) {
+        return true
+      } else {
+        return false
+      }
+    } else {
+      if (this.state.filters.glass || this.state.filters.plastic ||this.state.filters.metal ||this.state.filters.paper) {
+        return true
+      } else {
+        return false
+      }
+    }
+  }
 
   walkTime = (distance) => {return distance/5}
 
@@ -71,8 +97,8 @@ export default class Map extends React.Component {
         let region = {
                 latitude: parseFloat(position.coords.latitude),
                 longitude: parseFloat(position.coords.longitude),
-                latitudeDelta: 0.003,
-                longitudeDelta: 0.003
+                latitudeDelta: 0.006,
+                longitudeDelta: 0.006
             };
             this.setState({
                 initialRegion: region
@@ -107,6 +133,55 @@ export default class Map extends React.Component {
       loading: false,
     });
     this.forceUpdate()
+    if (this.props.route.params) {
+      switch (this.props.route.params.type) {
+        case "Plastic" :
+          this.setState({filters: {
+            ewaste: false,
+            metal: false, 
+            glass: false, 
+            plastic: true, 
+            paper: false
+          }})
+          break
+        case "Paper" :
+          this.setState({filters: {
+            ewaste: false,
+            metal: false, 
+            glass: false, 
+            plastic: false, 
+            paper: true
+          }})
+          break
+        case "Glass" :
+          this.setState({filters: {
+            ewaste: false,
+            metal: false, 
+            glass: true, 
+            plastic: false, 
+            paper: false
+          }})
+          break
+        case "Metal" :
+          this.setState({filters: {
+            ewaste: false,
+            metal: true, 
+            glass: false, 
+            plastic: false, 
+            paper: false
+          }})
+          break
+        case "Ewaste" :
+          this.setState({filters: {
+            ewaste: true,
+            metal: false, 
+            glass: false, 
+            plastic: false , 
+            paper: false
+          }})
+          break
+      }
+    }
   }
 
 
@@ -115,6 +190,10 @@ export default class Map extends React.Component {
     return (
       <>
       <Loader loading={this.state.loading} />
+     
+
+
+
       <MapView
           style={StyleSheet.absoluteFillObject}
           // region={this.state.mapRegion}
@@ -130,7 +209,7 @@ export default class Map extends React.Component {
             })
           }}>
 
-      {Fire.shared.bins.map((marker) => {
+      {Fire.shared.bins.filter(this.filterBins).map((marker) => {
         return (
           <MapView.Marker
           key={marker.uid}
@@ -203,12 +282,58 @@ export default class Map extends React.Component {
         ) : (
           <View />
         )}
+
+
+        { this.state.filterCard?(
+          <TouchableWithoutFeedback>
+            <View style={styles.filter}>
+              <CheckBox title='Metal' checked={this.state.filters.metal} onPress={()=>this.setState({filters: {...this.state.filters, metal: !this.state.filters.metal}})}/>
+              <CheckBox title='Plastic' checked={this.state.filters.plastic} onPress={()=>this.setState({filters: {...this.state.filters, plastic: !this.state.filters.plastic}})}/>
+              <CheckBox title='Paper' checked={this.state.filters.paper} onPress={()=>this.setState({filters: {...this.state.filters, paper: !this.state.filters.paper}})}/>
+              <CheckBox title='Glass' checked={this.state.filters.glass} onPress={()=>this.setState({filters: {...this.state.filters, glass: !this.state.filters.glass}})}/>
+              <CheckBox title='E-Waste' checked={this.state.filters.ewaste} onPress={()=>this.setState({filters: {...this.state.filters, ewaste: !this.state.filters.ewaste}})}/>
+              <Button title="Close" onPress={()=>this.setState({filterCard: false})}/>
+
+            </View>
+          </TouchableWithoutFeedback>
+        ) : (
+        <TouchableWithoutFeedback>
+          <Button
+            buttonStyle={styles.filterButton}
+            onPress={()=>this.setState({filterCard: true})}
+            title="filters"
+          /> 
+
+        </TouchableWithoutFeedback>
+        )
+      }
       </>
     );
   }
 }
 
 const styles = StyleSheet.create({
+  filter: {
+    color: "#3CB371",
+    backgroundColor: "#fff",
+    width: width - 20,
+    position: "absolute",
+    overflow: "hidden",
+    margin: 10,
+    top: 0,
+    shadowRadius: 20,
+    borderRadius: 8,
+    padding: 10,
+    elevation: 20,
+    flexDirection: "column-reverse",
+  },
+  filterButton: {
+    flex: 1,
+    color: '#ff1212',
+    height: 300, 
+    margin: 14,
+    padding: 24
+  },
   card: {
     color: "#3CB371",
     backgroundColor: "#fff",
