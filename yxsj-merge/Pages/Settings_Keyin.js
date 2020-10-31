@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, Text, StyleSheet, ScrollView, TextInput, titleChangeHandler, Button, Alert } from "react-native";
+import { View, Text, StyleSheet, ScrollView, TextInput, titleChangeHandler, Button, Alert, Image} from "react-native";
 import Fire from '../Backend/Fire';
 
 const initialState = {
@@ -32,8 +32,8 @@ class Settings_Keyin extends Component {
 
   render() {
     return (
-        <ScrollView>
-          <View style={styles.form}>
+          <View style={styles.screen}>
+          <Image source={require('../assets/recycling.jpg')} style={styles.secondContainer} /> 
             <Text style={styles.label}>Description of Fault</Text>
             
             <TextInput
@@ -51,15 +51,27 @@ class Settings_Keyin extends Component {
             />
 
           </View>
-        </ScrollView>
       );
     }
     
 }
 const styles = StyleSheet.create({
-    form: {
-      margin: 30
-    },
+  secondContainer: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    width: '110%',
+    height: '110%',
+  },
+  screen: {
+    flex: 1,
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding:15
+  },
     label: {
       fontSize: 18,
       marginBottom: 15

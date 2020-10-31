@@ -105,28 +105,17 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 0,
     left: 0,
-    width: '100%',
-    height: '100%',
-  },
-  backgroundImage: {
-    flex: 1,
-    resizeMode: 'cover', // or 'stretch'
+    right: 0,
+    bottom: 0,
+    width: '110%',
+    height: '110%',
   },
   screen: {
     flex: 1,
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    padding:5,
-    
-  },
-  header: {
-    flex: 1,
-    width: '100%',
-    backgroundColor: '#fff',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
+    padding:15,
   },
   funfact: {
     flex: 4,
@@ -162,8 +151,8 @@ const styles = StyleSheet.create({
   },
   image: {
     marginBottom: 20,
-    height: 200,
-    width: 200,
+    height: 100,
+    width: 100,
 }
 });
 

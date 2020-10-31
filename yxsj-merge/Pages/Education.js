@@ -6,7 +6,8 @@ import {
     SafeAreaView,
     ScrollView,
     Image, Button,
-    Dimensions, Linking
+    Dimensions, Linking,
+    TouchableOpacity
 } from "react-native";
 
 import Category from '../Category'
@@ -30,17 +31,34 @@ class Education extends Component {
                     <ScrollView
                         scrollEventThrottle={16}
                     >
+                        
                         <View style={{ flex: 1, backgroundColor: 'white', paddingTop: 20 }}>
                             {/* <Text style={{ fontSize: 24, fontWeight: '700', paddingHorizontal: 20 }}>
                                 News
                             </Text> */}
                             <Text
-                            onPress={() => {
-                                //on clicking we are going to open the URL using Linking
-                                Linking.openURL('https://www.straitstimes.com/tags/recycling');
-                            }}
                             style={{ fontSize: 24, fontWeight: '700', paddingHorizontal: 20 }}>
-                                News / Recycling Tips
+                                News 
+                            </Text>
+                            <Image 
+                                source={require('../assets/latestnews.png')} 
+                                style={{ width: "100%", height: 100, resizeMode: 'contain',flex: 1}}
+                                />
+    
+                            <View style={{
+                                backgroundColor: '#fff',
+                                justifyContent: 'center', 
+                                alignItems:'center',
+                                paddingHorizontal: 30}}>
+                            <TouchableOpacity style={{backgroundColor : "#CACC90"}} onPress = { () => 
+                                                Linking.openURL('https://www.straitstimes.com/tags/recycling')}>
+                                           
+                                <Text style={{color:'#000000', textAlign: 'center', fontWeight: 'bold' }}>CLICK HERE TO CHECK OUT THE MOST RECENT RECYCLING NEWS</Text>
+                            </TouchableOpacity>
+                            </View>
+                            <Text
+                            style={{ fontSize: 24, fontWeight: '700', paddingHorizontal: 20 }}>
+                                Recycling Tips
                             </Text>
 
                             <View style={{ height: 200, marginTop: 20 }}>
@@ -56,6 +74,9 @@ class Education extends Component {
                                     horizontal={true}
                                     showsHorizontalScrollIndicator={false}
                                 >
+                                    {/* <Category imageUri={require('../assets/latestnews.png')}
+                                        name="Recent Recycling News Updates"
+                                    /> */}
                                     <Category imageUri={require('../assets/upcycle.jpg')}
                                         name="Upcycling"
                                     />
@@ -101,5 +122,14 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center'
-    }
+    },
+    secondContainer: {
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        width: '110%',
+        height: '110%',
+      },
 });

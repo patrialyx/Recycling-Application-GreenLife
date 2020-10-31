@@ -19,6 +19,7 @@ class SubcategoryInterface extends React.Component {
   render() {
     return (
       <View style={styles.container}>
+        <Image source={require('../../assets/recycling.jpg')} style={styles.secondContainer} />        
         <Text style={styles.text}>This belongs in the category of:</Text>
         <View style={styles.category}>
           <View style={styles.round}>
@@ -52,9 +53,18 @@ class SubcategoryInterface extends React.Component {
   }
 }
 const styles = StyleSheet.create({
+  secondContainer: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    width: '110%',
+    height: '110%',
+  },
   container: {
     flex: 1,
-    backgroundColor: "#CACC90",
+    // backgroundColor: "#CACC90",
     alignItems: "center",
   },
   text: {

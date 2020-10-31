@@ -18,6 +18,7 @@ class Points extends Component {
   render(){
     return (
     <View style={styles.screen}>
+      <Image source={require('../assets/recycling.jpg')} style={styles.secondContainer} />        
       <Text style={{fontSize:30}}>Points History</Text> 
       <ProgressBar value={this.state.percent}/>
       <Text style={{fontSize:20,paddingTop:10}}>Level {this.state.level}</Text> 
@@ -43,6 +44,15 @@ class Points extends Component {
 }
 
 const styles = StyleSheet.create({
+  secondContainer: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    width: '110%',
+    height: '110%',
+  },
   screen: {
     flex: 1,
     backgroundColor: '#fff',
@@ -54,7 +64,7 @@ const styles = StyleSheet.create({
   point_box: {
     height:'15%',
     width:'100%',
-    backgroundColor: '#FFE2D1',
+    backgroundColor: '#CACC90',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',

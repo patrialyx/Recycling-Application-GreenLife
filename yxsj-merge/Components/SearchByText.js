@@ -92,6 +92,7 @@ class SearchByText extends React.Component{
     } else {
       return (
         <View style={styles.container}>
+        <Image source={require('../assets/recycling.jpg')} style={styles.secondContainer} />
         <Text style={styles.text}>What do you want to recycle?</Text>
         <FlatList
           showsVerticalScrollIndicator={false}
@@ -105,7 +106,7 @@ class SearchByText extends React.Component{
                 onChangeText={(queryText) => this.handleSearch(queryText)}
                 placeholder="Search"
                 style={{
-                  backgroundColor: "#fff",
+                  color: "#fff",
                   paddingHorizontal: 20,
                   alignItems: "stretch",
                   width: "80%",
@@ -141,9 +142,18 @@ class SearchByText extends React.Component{
 }
 
 const styles = StyleSheet.create({
+  secondContainer: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    width: '110%',
+    height: '110%',
+  },
   container: {
     flex: 1,
-    backgroundColor: "#CACC90",
+    backgroundColor: "transparent",
     alignItems: "center",
   },
   text: {
@@ -156,7 +166,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "space-between",
     flexDirection: "row",
-    backgroundColor: "#fff",
+    backgroundColor: "#436628",
     padding: 5,
     marginVertical: 10,
     borderRadius: 18,
@@ -165,7 +175,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
     paddingVertical: 20,
     paddingHorizontal: 10,
-    backgroundColor: "#fff",
+    backgroundColor: "#CACC90",
     flexDirection: "row",
     borderRadius: 20,
   },
