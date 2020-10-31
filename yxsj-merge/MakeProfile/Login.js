@@ -9,12 +9,15 @@ import {
   Image,
 } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import Loader from '../Components/Loader';
+
 
 import Fire from '../Backend/Fire';
 
 const initialState = {
   email: '',
   password: '',
+  loading: false
 };
 
 class Login extends React.Component {
@@ -44,10 +47,15 @@ class Login extends React.Component {
   handleLogin = async (email, password) => {
     // to access database
     // await Fire.shared.db.doc('test/doc1').set({field: "bye"})
-    
+    this.setState({
+      loading: true,
+    });
     const success = await Fire.shared.handleLogin(email, password)
     this.setState(initialState)
     if (success) {
+      this.setState({
+        loading: false,
+      });
       this.props.navigation.navigate('TabNavigator');
     }
   }
@@ -66,6 +74,7 @@ class Login extends React.Component {
     const text = 'gREenLife';
     return (
       <View style={styles.container}>
+        <Loader loading={this.state.loading} />
         <View
           style={{
             position: 'absolute',
