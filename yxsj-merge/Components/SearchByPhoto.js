@@ -24,7 +24,7 @@ class SearchByPhoto extends React.Component{
     pickedImage: null,
     category: null,
     picture: null,
-    loading: false
+    loading: false,
   }
   verifyPermissions = async () => {
     console.log("Verifying Permissions...")

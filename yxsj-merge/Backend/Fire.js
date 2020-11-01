@@ -42,9 +42,10 @@ class Fire {
         displayName: name
       })
       user.sendEmailVerification()
-      this.db.doc(`users/${this.user.uid}`).set({
+      await this.db.doc(`users/${this.user.uid}`).set({
         history: [], 
-        total_points: 0
+        total_points: 0, 
+        name
       })
       console.log("account created")
       return true
@@ -109,6 +110,17 @@ class Fire {
   onAuthStateChanged = () => {
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
+        // add check if database exists
+        const userRef = this.db.doc(`users/${user.uid}`)
+        userRef.get().then((snap)=> {
+          if (!snap.exists) {
+            userRef.set({
+              history: [], 
+              total_points: 0, 
+              user: user.displayName
+            })
+          } 
+        })
         console.log(user)
       } else {
         console.log("user is signed out")

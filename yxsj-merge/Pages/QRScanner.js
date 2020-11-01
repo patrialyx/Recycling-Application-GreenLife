@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Text, View, StyleSheet, Button } from "react-native";
+import { Text, View, StyleSheet, Button, Alert } from "react-native";
 import { BarCodeScanner } from "expo-barcode-scanner";
-import { useNavigation } from "@react-navigation/native";
-import { render } from "react-dom";
+// import { useNavigation } from "@react-navigation/native";
+// import { render } from "react-dom";
 
 class QRScanner extends React.Component{
   // const [hasPermission, setHasPermission] = useState(null);
@@ -31,7 +31,15 @@ class QRScanner extends React.Component{
 
   handleBarCodeScanned = ({ type, data }) => {
     this.setScanned(true);
-    alert(`Bar code with type ${type} and data ${data} has been scanned!`);
+    Alert.alert(
+      "Connected!",
+      "Connection with Smart Bin established!",
+      [
+        { text: "Ok!", onPress: () => console.log("OK Pressed") }
+      ],
+      { cancelable: false }
+    );
+    // alert(`Bar code with type ${type} and data ${data} has been scanned!`);
   };
 
   // const navigation = useNavigation();

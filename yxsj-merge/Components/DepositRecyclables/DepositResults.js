@@ -23,6 +23,14 @@ class DepositResults extends React.Component {
       Weight: Math.round(Math.random()*100, 2)/100, //round off to 2 dp
       Points: RandomNumber,
     };
+
+    // //force the recyclable to be ewaste for the demo
+    // this.state = {
+    //   Type: "E-waste",
+    //   Weight: Math.round(Math.random()*100, 2)/100, //round off to 2 dp
+    //   Points: RandomNumber,
+    // };
+
     Fire.shared.submitItem(this.state.Type,this.state.Weight, this.state.Points);
     console.log(this.state.Type)
     console.log(this.state.Weight)
@@ -43,13 +51,25 @@ class DepositResults extends React.Component {
           <Text style={styles.text}>Items Deposited:</Text>
           <TouchableOpacity>
             <View style={styles.listItem}>
-              
               <View style={styles.metaInfo}>
-                <Text style={styles.title}>{this.state.Type}</Text>
-                <Text style={styles.title}>{this.state.Weight} kg </Text>
+                <Text style={styles.title}>
+                  <Text style={{fontWeight: "bold"}}>Type: </Text>
+                  <Text>{this.state.Type}</Text>
+                </Text>
+                <Text style={styles.title}>
+                  <Text style={{fontWeight: "bold"}}>Weight: </Text>
+                  <Text>{this.state.Weight} kg</Text>
+                </Text>
                 <Text style={styles.title}>+ {this.state.Points} Points!</Text>
               </View>
             </View>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={styles.doneButton}
+            onPress={() => this.props.navigation.navigate("QRScanner")}
+          >
+            <Text style={styles.buttonText}>Scan Again!</Text>
           </TouchableOpacity>
         </ImageBackground>
       </View>
@@ -95,7 +115,6 @@ const styles = StyleSheet.create({
     fontSize: 25,
     width: 200,
     padding: 10,
-    fontWeight: "bold",
     textAlign: "center",
   },
   coverImage: {
@@ -108,6 +127,21 @@ const styles = StyleSheet.create({
     // justifyContent: "center",
     width: "100%",
     height: "100%",
+  },
+  doneButton: {
+    backgroundColor: "#CACC90",
+    marginTop: 100,
+    paddingVertical: 10,
+    paddingHorizontal: 10,
+    borderRadius: 20,
+    alignItems: "center",
+    justifyContent: "center",
+    textAlign: "center",
+  },
+  buttonText: {
+    fontSize: 25,
+    fontWeight: "600",
+    color: "#fff",
   },
 });
 export default DepositResults;

@@ -9,13 +9,14 @@ import {
   Image,
 } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-
+import Loader from '../Components/Loader'
 import Fire from '../Backend/Fire';
 
 const initialState = {
   email: '',
   password: '',
-  name:''
+  name:'', 
+  loading: false
 };
 
 class Register extends React.Component {
@@ -47,11 +48,12 @@ class Register extends React.Component {
       alert("Please input display name") 
       return;
     }
-    
+    this.setState({loading:true})
     const success = await Fire.shared.handleRegister(email, password, name)
     this.setState(initialState)
+    this.setState({loading: false})
     if (success) {
-      this.props.navigation.navigate("Profile")
+      this.props.navigation.navigate("Login")
     }
   };
 
@@ -66,6 +68,7 @@ class Register extends React.Component {
     const text = 'gREenLife';
     return (
       <View style={styles.container}>
+        <Loader loading={this.state.loading} />
         <View
           style={{
             position: 'absolute',
@@ -88,7 +91,7 @@ class Register extends React.Component {
             backgroundColor: 'transparent',
             justifyContent: 'center',
           }}>
-          <KeyboardAwareScrollView>
+          {/* <KeyboardAwareScrollView> */}
             <View style={{ justifyContent: 'center', alignItems: 'center' }}>
               <Image
                 source={require('../assets/greenlife.png')}
@@ -140,7 +143,7 @@ class Register extends React.Component {
                 <Text style={styles.buttonText}> Back </Text>
               </TouchableOpacity>
             </View>
-          </KeyboardAwareScrollView>
+          {/* </KeyboardAwareScrollView> */}
         </View>
       </View>
     );
