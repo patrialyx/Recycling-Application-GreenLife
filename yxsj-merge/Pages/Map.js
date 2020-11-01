@@ -132,7 +132,7 @@ export default class Map extends React.Component {
     this.setState({
       loading: false,
     });
-    this.forceUpdate()
+    // this.forceUpdate()
     if (this.props.route.params) {
       switch (this.props.route.params.type) {
         case "Plastic" :
@@ -190,10 +190,7 @@ export default class Map extends React.Component {
     return (
       <>
       <Loader loading={this.state.loading} />
-     
-
-
-
+      
       <MapView
           style={StyleSheet.absoluteFillObject}
           // region={this.state.mapRegion}

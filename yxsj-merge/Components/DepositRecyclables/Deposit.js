@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     fontSize: 25,
-    fontWeight: "700",
+    fontWeight: "600",
     color: "#fff",
   },
   doneButton: {
