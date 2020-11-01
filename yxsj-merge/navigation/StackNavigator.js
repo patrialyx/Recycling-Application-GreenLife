@@ -110,9 +110,13 @@ const LoginStackNavigator = () => {
   }
   
 
-const getHeaderTitle = (route) => {
-    return getFocusedRouteNameFromRoute(route) ?? 'HomeScreen'
-  }
+const getTabHeader = (route) => {
+  return getFocusedRouteNameFromRoute(route) ?? 'HomeScreen'
+}
+
+const GetLoginHeader = (route) => {
+  return getFocusedRouteNameFromRoute(route) ?? 'Login'
+}
 
 const MainLoginNavigator = () => {
   return (
@@ -124,9 +128,9 @@ const MainLoginNavigator = () => {
         Fire.shared.user 
         ?
         (
-          <Stack.Screen name= "TabNavigator" component={TabNavigator} options={({ route})=> ({ headerTitle: getHeaderTitle(route)})} />
+          <Stack.Screen name= "TabNavigator" component={TabNavigator} options={({ route})=> ({ headerTitle: getTabHeader(route)})} />
           ) : (
-            <Stack.Screen name = "Login" component={LoginStackNavigator} />
+            <Stack.Screen name = "LoginStack" component={LoginStackNavigator} options={({ route})=> ({ headerTitle: GetLoginHeader(route)})}/>
             )
           }
       <Stack.Screen name= "ForgetPassword" component={ForgetPassword} />
