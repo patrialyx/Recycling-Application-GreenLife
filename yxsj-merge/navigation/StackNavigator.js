@@ -50,6 +50,7 @@ const HomeScreenStackNavigator = () => {
     <Stack.Navigator>
       <Stack.Screen name="Home" component= {Home} />
       <Stack.Screen name="Points" component= {Points} />
+      <Stack.Screen name="Education" component= {Education} />
       <Stack.Screen name="Search" component= {SearchStackNavigator} />
     </Stack.Navigator>
   );

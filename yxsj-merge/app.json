@@ -1,12 +1,12 @@
 {
   "expo": {
-    "name": "yxsj-merge",
+    "name": "gREenLife",
     "slug": "snack-a8df554b-9e37-41ff-9772-f4d144153ecf",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/sqlogo.png",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/sqlogo.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -20,14 +20,15 @@
       "supportsTablet": true
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/sqlogo.png"
     },
     "android": {
       "config": {
         "googleMaps": {
           "apiKey": "AIzaSyBEIbuhr6Srcq7eGKaVYjRSpAEuGefGPQ8"
         }
-      }
+      },
+      "package": "com.patrialyx.snacka8df554b9e3741ff9772f4d144153ecf"
     }
   }
 }

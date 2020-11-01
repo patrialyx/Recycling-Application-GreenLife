@@ -92,7 +92,7 @@ class Home extends Component {
                   marginBottom: 0,
                   backgroundColor: '#CACC90'
                 }}
-                onPress={() => this.props.navigation.navigate("Points")}
+                onPress={() => this.props.navigation.navigate("Points", {total_points: this.state.total_points, hist: this.state.hist, level:this.state.level, percent:this.state.percent})}
               />
             </Card>
         
