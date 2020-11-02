@@ -17,7 +17,8 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.patrialyx.snacka8df554b9e3741ff9772f4d144153ecf"
     },
     "web": {
       "favicon": "./assets/sqlogo.png"
