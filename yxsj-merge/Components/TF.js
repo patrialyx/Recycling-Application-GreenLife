@@ -91,8 +91,8 @@ class TensorJS  {
   // }
 }
 
-TensorJS.shared = new TensorJS()
-TensorJS.shared.init()
+//TensorJS.shared = new TensorJS()
+//TensorJS.shared.init()
 
 const styles = StyleSheet.create({
   container: {

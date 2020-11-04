@@ -17,19 +17,19 @@ class DepositResults extends React.Component {
 
     //set random number
     let RandomNumber = Math.floor(Math.random() * 100) + 1;
-    this.state = {
-      // This is our Default number value
-      Type: randomSubcategory,
-      Weight: Math.round(Math.random()*100, 2)/100, //round off to 2 dp
-      Points: RandomNumber,
-    };
-
-    // //force the recyclable to be ewaste for the demo
     // this.state = {
-    //   Type: "E-waste",
+    //   // This is our Default number value
+    //   Type: randomSubcategory,
     //   Weight: Math.round(Math.random()*100, 2)/100, //round off to 2 dp
     //   Points: RandomNumber,
     // };
+
+    //force the recyclable to be ewaste for the demo
+    this.state = {
+      Type: "E-waste",
+      Weight: 0.9, //round off to 2 dp
+      Points: RandomNumber,
+    };
 
     Fire.shared.submitItem(this.state.Type,this.state.Weight, this.state.Points);
     console.log(this.state.Type)

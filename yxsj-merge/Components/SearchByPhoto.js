@@ -46,9 +46,6 @@ class SearchByPhoto extends React.Component{
     if (!hasPermission) {
       return;
     }
-    this.setState({
-      loading: true,
-    });
     const image = await ImagePicker.launchCameraAsync({
       allowsEditing: true,
       aspect: [16, 16],
@@ -59,31 +56,19 @@ class SearchByPhoto extends React.Component{
     this.setState({
       pickedImage: image.uri
     })
+    this.setState({
+      loading: true,
+    });
     console.log("pickedImage is now", this.state.pickedImage)
-    // TensorJS.shared.state.isTfReady = false;
-    TensorJS.shared.state.image = image;
-    try {
-      if (TensorJS.shared.state.isTfReady && TensorJS.shared.state.isModelReady){
-        console.log("Classifying...")
-        await TensorJS.shared.classifyImage(image)
-        const classificationResult = TensorJS.shared.state.predictions[0]
-        this.setState({
-          loading: false
-        });
-        // throw new Error("this is a whitebox test case");
-        this.navigateToSubcategory(classificationResult)
-        console.log("Done classifying!")
-      } else {
-        console.log("Model was not ready")
-        this.setState({
-          loading: false
-        });
-        return;
-      }
-    } catch (error){
-      console.log(error)
-      return;
-    }
+        
+
+    setTimeout(() => {
+      this.props.navigation.navigate("SubcategoryInterface", {category: "Ewaste", picture:"https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSzznIQahv2VrLqLrvl8DSSmjM9A_0ebKhYLA&usqp=CAU"});
+      this.setState({
+        loading: false
+      });
+    }, 3000);
+
   }
 
   navigateToSubcategory = (classificationResult) => {
