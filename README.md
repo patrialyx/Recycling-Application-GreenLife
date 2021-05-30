@@ -1,4 +1,4 @@
-# Educational-recycling-application
+# GreenLife Application
 A recycling application, using react native framework and firebase backend
 <h2> Video Demo <h2>
 
