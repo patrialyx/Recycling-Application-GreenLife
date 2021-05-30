@@ -1,4 +1,4 @@
-# CZ2006ReactNativeApp
+# RecyclingReactNativeApp
 A recycling application, using react native framework and firebase backend
 <h2> Video Demo <h2>
 
