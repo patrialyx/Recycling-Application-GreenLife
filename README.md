@@ -1,4 +1,4 @@
-# RecyclingReactNativeApp
+# Educational-recycling-application
 A recycling application, using react native framework and firebase backend
 <h2> Video Demo <h2>
 
